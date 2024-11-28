@@ -1,0 +1,35 @@
+{
+  "name": "@swaptoshi/governance-module",
+  "version": "1.0.0-alpha.0",
+  "description": "Klayr governance on-chain module",
+  "keywords": [
+    "governance",
+    "dao",
+    "klayr",
+    "swaptoshi",
+    "web3"
+  ],
+  "author": "swapsatoshi <swapsatoshi@gmail.com>",
+  "homepage": "https://swaptoshi.com",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swaptoshi/swaptoshi-sdk.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/governance-module.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Swaptoshi/swaptoshi-sdk/issues"
+  }
+}
