@@ -1,0 +1,35 @@
+{
+  "name": "@swaptoshi/utils",
+  "version": "1.0.0-alpha.0",
+  "description": "Library containing generic utility functions for use with Swaptoshi-related software",
+  "keywords": [
+    "klayr",
+    "swaptoshi",
+    "blockchain",
+    "web3",
+    "javascript"
+  ],
+  "author": "swapsatoshi <swapsatoshi@gmail.com>",
+  "homepage": "https://swaptoshi.com",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swaptoshi/swaptoshi-sdk.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/swaptoshi-utils.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Swaptoshi/swaptoshi-sdk/issues"
+  }
+}
