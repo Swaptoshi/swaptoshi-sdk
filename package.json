@@ -1,11 +1,34 @@
 {
-  "name": "root",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "dependencies": {},
-  "devDependencies": {
-    "lerna": "^8.1.9"
-  }
+	"name": "root",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"clean": "lerna run clean",
+		"clean:node_modules": "lerna clean --yes",
+		"clean:full": "nx run-many --target=clean && npm run clean:node_modules && rm -rf node_modules && npm install && npm run build",
+		"format": "nx run-many --target=format && npm run clean",
+		"format:since": "nx affected --target=format && npm run clean",
+		"lint": "nx run-many --target=lint",
+		"lint:since": "nx affected --target=lint",
+		"lint:fix": "nx run-many --target=lint:fix",
+		"test": "nx run-many --target=test --exclude=klayr-did-docs",
+		"test:ci": "nx run-many --target=test:ci --exclude=klayr-did-docs",
+		"test:since": "nx affected --target=test --exclude=klayr-did-docs",
+		"build": "nx run-many --target=build --exclude=klayr-did-docs",
+		"build:since": "nx affected --target=build --exclude=klayr-did-docs",
+		"prepare": "husky install",
+		"postinstall": "husky install",
+		"version": "lerna version --no-private",
+		"prepack": "lerna run test",
+		"postpublish": "npm install",
+		"preversion": "lerna run test"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"lerna": "^8.1.9",
+		"husky": "^8.0.3",
+		"lint-staged": "^13.2.3"
+	}
 }
