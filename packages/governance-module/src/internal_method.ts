@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Modules, StateMachine } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { CONTEXT_STORE_KEY_DYNAMIC_BLOCK_REDUCTION, CONTEXT_STORE_KEY_DYNAMIC_BLOCK_REWARD, POS_MODULE_NAME, POS_STAKE_COMMAND_NAME } from './constants';
 import { TreasuryMintEvent } from './events/treasury_mint';
 import { TreasuryBlockRewardTaxEvent } from './events/treasury_block_reward_tax';

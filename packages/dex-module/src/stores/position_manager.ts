@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable import/no-cycle */
 import { Modules, Types } from 'klayr-framework';
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { ImmutableSwapContext, MutableSwapContext, NFTMethod, PositionManager, TokenMethod } from '../types';
 import { positionManagerStoreSchema } from '../schema';
 import { createImmutablePositionManagerinstance, createMutablePositionManagerinstance } from './factory';

@@ -3,14 +3,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import { Modules, Types } from 'klayr-framework';
-import utils from '@klayr/utils';
-import cryptography from '@klayr/cryptography';
+import * as utils from '@klayr/utils';
+import * as cryptography from '@klayr/cryptography';
 import { ICOChangePriceParams, ICOCreateParams, ICODepositParams, ICOStoreData, ICOTreasurifyParams, ICOWithdrawParams } from '../../types';
 import { BaseInstance } from './base';
 import { ICOStore } from '../ico';
 import { IcoCreatedEvent } from '../../events/ico_created';
-import { serializer } from '@swaptoshi/utils/dist/object';
-import { verifyAddress, verifyPositiveNumber, verifyToken } from '@swaptoshi/utils/dist/verify';
+import { object, verify } from '@swaptoshi/utils';
 import { FactoryStore } from '../factory';
 import { computeICOPoolAddress, decodeICOPoolAddress } from '../library';
 import { IcoTreasurifyEvent } from '../../events/ico_treasurify';
@@ -38,7 +37,7 @@ export class ICOPool extends BaseInstance<ICOStoreData, ICOStore> implements ICO
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<ICOStoreData>({
+			object.serializer<ICOStoreData>({
 				price: this.price,
 				providerAddress: this.providerAddress,
 			}),
@@ -54,11 +53,11 @@ export class ICOPool extends BaseInstance<ICOStoreData, ICOStore> implements ICO
 
 	public async verifyCreate(params: ICOCreateParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenIn', params.tokenIn);
-		verifyToken('tokenOut', params.tokenOut);
-		verifyAddress('providerAddress', params.providerAddress);
-		verifyPositiveNumber('amount', params.amount);
-		verifyPositiveNumber('price', params.price);
+		verify.verifyToken('tokenIn', params.tokenIn);
+		verify.verifyToken('tokenOut', params.tokenOut);
+		verify.verifyAddress('providerAddress', params.providerAddress);
+		verify.verifyPositiveNumber('amount', params.amount);
+		verify.verifyPositiveNumber('price', params.price);
 
 		await this._checkFactoryOwner(params.tokenOut);
 		await this._checkICONotCreatedYet(params.tokenIn, params.tokenOut);
@@ -123,8 +122,8 @@ export class ICOPool extends BaseInstance<ICOStoreData, ICOStore> implements ICO
 
 	public async verifyChangePrice(params: ICOChangePriceParams) {
 		this._checkImmutableDependencies();
-		verifyAddress('poolAddress', params.poolAddress);
-		verifyPositiveNumber('price', params.price);
+		verify.verifyAddress('poolAddress', params.poolAddress);
+		verify.verifyPositiveNumber('price', params.price);
 
 		await this._checkICOProvider();
 		await this._checkICOExists(params.poolAddress);
@@ -152,8 +151,8 @@ export class ICOPool extends BaseInstance<ICOStoreData, ICOStore> implements ICO
 
 	public async verifyDeposit(params: ICODepositParams) {
 		this._checkImmutableDependencies();
-		verifyAddress('poolAddress', params.poolAddress);
-		verifyPositiveNumber('amount', params.amount);
+		verify.verifyAddress('poolAddress', params.poolAddress);
+		verify.verifyPositiveNumber('amount', params.amount);
 
 		await this._checkICOProvider();
 		await this._checkICOExists(params.poolAddress);
@@ -180,8 +179,8 @@ export class ICOPool extends BaseInstance<ICOStoreData, ICOStore> implements ICO
 
 	public async verifyWithdraw(params: ICOWithdrawParams) {
 		this._checkImmutableDependencies();
-		verifyAddress('poolAddress', params.poolAddress);
-		verifyPositiveNumber('amount', params.amount);
+		verify.verifyAddress('poolAddress', params.poolAddress);
+		verify.verifyPositiveNumber('amount', params.amount);
 
 		await this._checkICOProvider();
 		await this._checkICOExists(params.poolAddress);
@@ -209,8 +208,8 @@ export class ICOPool extends BaseInstance<ICOStoreData, ICOStore> implements ICO
 	// eslint-disable-next-line @typescript-eslint/require-await
 	public async verifyTreasurify(params: ICOTreasurifyParams) {
 		this._checkImmutableDependencies();
-		verifyAddress('poolAddress', params.poolAddress);
-		verifyToken('tokenId', params.tokenId);
+		verify.verifyAddress('poolAddress', params.poolAddress);
+		verify.verifyToken('tokenId', params.tokenId);
 
 		await this._checkICOExists(params.poolAddress);
 	}

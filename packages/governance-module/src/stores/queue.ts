@@ -3,7 +3,7 @@
 
 import { proposalQueueStoreSchema } from '../schema';
 import { MutableGovernanceContext, ProposalQueueStoreData, StoreInstance } from '../types';
-import { numberToBytes } from '@swaptoshi/utils/dist/bytes';
+import { bytes } from '@swaptoshi/utils';
 import { BaseStoreWithInstance } from './base';
 import { ProposalQueue } from './instances/queue';
 
@@ -11,7 +11,7 @@ export class ProposalQueueStore extends BaseStoreWithInstance<ProposalQueueStore
 	public async getInstance(ctx: MutableGovernanceContext): Promise<StoreInstance<ProposalQueue>> {
 		this._checkDependencies();
 
-		const proposalQueueData = await this.getOrDefault(ctx.context, numberToBytes(ctx.height));
+		const proposalQueueData = await this.getOrDefault(ctx.context, bytes.numberToBytes(ctx.height));
 
 		const queue = new ProposalQueue(this.stores, this.events, this.config!, this.genesisConfig!, this.moduleName, this.governableConfigRegistry!, proposalQueueData, ctx.height);
 

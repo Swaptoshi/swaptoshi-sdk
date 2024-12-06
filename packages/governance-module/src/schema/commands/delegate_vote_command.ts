@@ -1,7 +1,7 @@
 import { DelegateVoteParams } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const delegateVoteCommandSchema: TypedSchema<DelegateVoteParams> = {
+export const delegateVoteCommandSchema: Types.TypedSchema<DelegateVoteParams> = {
 	$id: '/governance/command/delegate_vote',
 	type: 'object',
 	required: ['delegateeAddress'],

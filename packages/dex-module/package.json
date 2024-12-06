@@ -41,6 +41,7 @@
 		"url": "https://github.com/Swaptoshi/swaptoshi-sdk/issues"
 	},
 	"devDependencies": {
+		"@oclif/core": "^4.0.34",
 		"@types/jest": "^29.5.3",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"eslint": "^8.46.0",
@@ -50,6 +51,7 @@
 		"eslint-plugin-jest": "^27.2.3",
 		"eslint-plugin-n": "^16.0.1",
 		"eslint-plugin-promise": "^6.1.1",
+		"fast-xml-parser": "^4.5.0",
 		"jest": "^29.6.2",
 		"jest-extended": "^4.0.1",
 		"jest-junit": "^16.0.0",
@@ -63,13 +65,14 @@
 		"@klayr/cryptography": "^4.1.1",
 		"@klayr/utils": "^0.4.3",
 		"@klayr/validator": "^0.9.1",
-		"@liskhq/lisk-db": "^0.3.10",
+		"@liskhq/lisk-db": "^0.3.7",
 		"@swaptoshi/fee-conversion-module": "^1.0.0-alpha.0",
 		"@swaptoshi/governance-module": "^1.0.0-alpha.0",
 		"@swaptoshi/utils": "^1.0.0-alpha.0",
 		"bignumber.js": "^9.1.2",
 		"crc": "^4.3.2",
 		"decimal.js": "^10.4.3",
+		"ipfs-only-hash": "^4.0.0",
 		"klayr-framework": "^0.12.3"
 	}
 }

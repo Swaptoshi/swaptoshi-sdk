@@ -1,8 +1,8 @@
 import { Types } from 'klayr-framework';
 import { GetCastedVoteParams, CastedVoteStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types as sTypes } from '@swaptoshi/utils';
 
-export const getCastedVoteEndpointResponseSchema: TypedSchema<Types.JSONObject<CastedVoteStoreData>> = {
+export const getCastedVoteEndpointResponseSchema: sTypes.TypedSchema<Types.JSONObject<CastedVoteStoreData>> = {
 	$id: '/governance/endpoint/response/getCastedVote',
 	type: 'object',
 	required: ['activeVote'],
@@ -32,7 +32,7 @@ export const getCastedVoteEndpointResponseSchema: TypedSchema<Types.JSONObject<C
 	},
 };
 
-export const getCastedVoteEndpointRequestSchema: TypedSchema<GetCastedVoteParams> = {
+export const getCastedVoteEndpointRequestSchema: sTypes.TypedSchema<GetCastedVoteParams> = {
 	$id: '/governance/endpoint/request/getCastedVote',
 	type: 'object',
 	required: ['address'],

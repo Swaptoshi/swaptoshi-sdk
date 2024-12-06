@@ -4,15 +4,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Modules, Types } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import cryptography from '@klayr/cryptography';
-import utils from '@klayr/utils';
+import * as cryptography from '@klayr/cryptography';
+import * as utils from '@klayr/utils';
 import { ConfigActionPayload, FundingActionPayload, ProposalQueueStoreData, ProposalStatus, QuorumMode } from '../../types';
 import { ProposalQueueStore } from '../queue';
 import { BaseInstance } from './base';
 import { GovernanceGovernableConfig } from '../../config';
 import { isSatisfyTurnoutBias, parseBigintOrPercentage } from '../../utils';
-import { numberToBytes } from '@swaptoshi/utils/dist/bytes';
-import { serializer } from '@swaptoshi/utils/dist/object';
+import { bytes } from '@swaptoshi/utils';
+import { object } from '@swaptoshi/utils';
 import { ProposalStore } from '../proposal';
 import { GovernableConfigRegistry } from '../../registry';
 import { ProposalActiveEvent } from '../../events/proposal_active';
@@ -35,7 +35,7 @@ export class ProposalQueue extends BaseInstance<ProposalQueueStoreData, Proposal
 		queue: ProposalQueueStoreData,
 		height: number,
 	) {
-		super(ProposalQueueStore, stores, events, config, genesisConfig, moduleName, numberToBytes(height));
+		super(ProposalQueueStore, stores, events, config, genesisConfig, moduleName, bytes.numberToBytes(height));
 
 		Object.assign(this, utils.objects.cloneDeep(queue));
 
@@ -48,7 +48,7 @@ export class ProposalQueue extends BaseInstance<ProposalQueueStoreData, Proposal
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<ProposalQueueStoreData>({
+			object.serializer<ProposalQueueStoreData>({
 				start: this.start,
 				quorum: this.quorum,
 				ends: this.ends,

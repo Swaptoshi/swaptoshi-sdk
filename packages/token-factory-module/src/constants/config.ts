@@ -1,4 +1,4 @@
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { TokenFactoryModuleConfig } from '../types';
 import { DEFAULT_LEFTOVER_ADDRESS } from './address';
 

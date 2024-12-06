@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/prefer-for-of */
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { crc32 } from 'crc';
 import { Uint256String, Uint8String, Int24String, Uint24String, Uint256, Uint8, Int24, Uint160String, Int256, Uint160, Uint24, Int8String } from '../int';
 

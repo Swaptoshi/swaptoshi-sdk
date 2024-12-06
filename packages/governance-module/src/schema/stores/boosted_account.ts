@@ -1,7 +1,7 @@
 import { BoostedAccountStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const boostedAccountStoreSchema: TypedSchema<BoostedAccountStoreData> = {
+export const boostedAccountStoreSchema: Types.TypedSchema<BoostedAccountStoreData> = {
 	$id: '/governance/store/boosted_account',
 	type: 'object',
 	required: ['targetHeight'],

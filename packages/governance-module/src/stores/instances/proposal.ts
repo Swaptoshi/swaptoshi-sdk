@@ -3,15 +3,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules, StateMachine, Types } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import Decimal from 'decimal.js';
 import { ConfigActionPayload, CreateProposalParams, ProposalQueueStoreData, ProposalStatus, ProposalStoreData, QuorumMode, SetProposalAttributesParams, VoteParams, Votes } from '../../types';
 import { ProposalStore } from '../proposal';
 import { BaseInstance } from './base';
 import { GovernanceGovernableConfig } from '../../config';
 import { getBoostMultiplier, parseBigintOrPercentage } from '../../utils';
-import { serializer } from '@swaptoshi/utils/dist/object';
-import { bytesToNumber, numberToBytes } from '@swaptoshi/utils/dist/bytes';
+import { object, bytes } from '@swaptoshi/utils';
 import { ProposalCreatedEvent } from '../../events/proposal_created';
 import { NextAvailableProposalIdStore } from '../next_available_proposal_id';
 import { MAX_LENGTH_PROPOSAL_SUMMARY, MAX_LENGTH_PROPOSAL_TITLE, MAX_PROPOSAL_QUEUE_PER_BLOCK, POS_MODULE_NAME, VOTE_DATA_MAX_LENGTH } from '../../constants';
@@ -55,7 +54,7 @@ export class Proposal extends BaseInstance<ProposalStoreData, ProposalStore> imp
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<ProposalStoreData>({
+			object.serializer<ProposalStoreData>({
 				title: this.title,
 				summary: this.summary,
 				deposited: this.deposited,
@@ -168,7 +167,7 @@ export class Proposal extends BaseInstance<ProposalStoreData, ProposalStore> imp
 		await this.tokenMethod!.lock(this.mutableContext!.context, this.mutableContext!.senderAddress, this.moduleName, this._getStakingTokenId(), BigInt(config.proposalCreationDeposit));
 
 		const nextId = await this._getNextAvailableProposalId();
-		this.key = numberToBytes(nextId.nextProposalId);
+		this.key = bytes.numberToBytes(nextId.nextProposalId);
 		await this._registerQueue(nextId.nextProposalId);
 
 		await this._saveStore();
@@ -309,7 +308,7 @@ export class Proposal extends BaseInstance<ProposalStoreData, ProposalStore> imp
 		this._checkImmutableDependencies();
 
 		const castedVote = await this.castedVoteStore.getOrDefault(this.mutableContext!.context, this.mutableContext!.senderAddress);
-		const proposalIndex = castedVote.activeVote.findIndex(vote => vote.proposalId === bytesToNumber(this.key));
+		const proposalIndex = castedVote.activeVote.findIndex(vote => vote.proposalId === bytes.bytesToNumber(this.key));
 		if (proposalIndex === -1) return BigInt(0);
 
 		const boostedState = await this.boostedAccountStore.getOrDefault(this.mutableContext!.context, this.mutableContext!.senderAddress);
@@ -390,10 +389,10 @@ export class Proposal extends BaseInstance<ProposalStoreData, ProposalStore> imp
 	}
 
 	private async _saveQueue(proposalId: number, height: number, type: keyof ProposalQueueStoreData) {
-		const proposalQueue = await this.proposalQueueStore.getOrDefault(this.mutableContext!.context, numberToBytes(height));
+		const proposalQueue = await this.proposalQueueStore.getOrDefault(this.mutableContext!.context, bytes.numberToBytes(height));
 		if (proposalQueue[type].length >= MAX_PROPOSAL_QUEUE_PER_BLOCK) throw new Error(`Exceeded MAX_PROPOSAL_QUEUE_PER_BLOCK of ${MAX_PROPOSAL_QUEUE_PER_BLOCK}`);
 		if (proposalQueue[type].findIndex(id => id === proposalId) === -1) proposalQueue[type].push(proposalId);
-		await this.proposalQueueStore.set(this.mutableContext!.context, numberToBytes(height), proposalQueue);
+		await this.proposalQueueStore.set(this.mutableContext!.context, bytes.numberToBytes(height), proposalQueue);
 	}
 
 	private async _getNextAvailableProposalId() {

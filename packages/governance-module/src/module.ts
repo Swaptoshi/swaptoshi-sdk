@@ -3,8 +3,8 @@
 
 import { Modules, StateMachine } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import utils from '@klayr/utils';
-import validator from '@klayr/validator';
+import * as utils from '@klayr/utils';
+import * as validator from '@klayr/validator';
 import { BoostVoteCommand } from './commands/boost_vote_command';
 import { CreateProposalCommand } from './commands/create_proposal_command';
 import { DelegateVoteCommand } from './commands/delegate_vote_command';
@@ -63,7 +63,7 @@ import {
 	governanceGenesisStoreSchema,
 } from './schema';
 import { ProposalVoterStore } from './stores/proposal_voter';
-import { numberToBytes } from '@swaptoshi/utils/dist/bytes';
+import { bytes } from '@swaptoshi/utils';
 import { ConfigRegisteredEvent } from './events/config_registered';
 import { ConfigRegistryStore } from './stores/config_registry';
 
@@ -342,7 +342,7 @@ export class GovernanceModule extends Modules.BaseModule {
 			}
 
 			// set state
-			await proposalVoterStore.set(context, numberToBytes(proposalVoterData.proposalId), proposalVoterData);
+			await proposalVoterStore.set(context, bytes.numberToBytes(proposalVoterData.proposalId), proposalVoterData);
 		}
 
 		const proposalStore = this.stores.get(ProposalStore);
@@ -360,7 +360,7 @@ export class GovernanceModule extends Modules.BaseModule {
 			}
 
 			// set state
-			await proposalStore.set(context, numberToBytes(proposalData.proposalId), proposalData);
+			await proposalStore.set(context, bytes.numberToBytes(proposalData.proposalId), proposalData);
 		}
 
 		const queueStore = this.stores.get(ProposalQueueStore);
@@ -378,7 +378,7 @@ export class GovernanceModule extends Modules.BaseModule {
 			}
 
 			// set state
-			await queueStore.set(context, numberToBytes(queueData.height), queueData);
+			await queueStore.set(context, bytes.numberToBytes(queueData.height), queueData);
 		}
 
 		const voteScoreStore = this.stores.get(VoteScoreStore);

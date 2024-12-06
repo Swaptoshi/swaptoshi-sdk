@@ -1,7 +1,7 @@
 import { VoteParams } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const voteCommandSchema: TypedSchema<VoteParams> = {
+export const voteCommandSchema: Types.TypedSchema<VoteParams> = {
 	$id: '/governance/command/vote',
 	type: 'object',
 	required: ['proposalId', 'decision', 'data'],

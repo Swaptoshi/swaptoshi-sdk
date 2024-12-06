@@ -1,8 +1,8 @@
 import { Types } from 'klayr-framework';
 import { GetBaseVoteScoreParams, VoteScoreStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types as sTypes } from '@swaptoshi/utils';
 
-export const getBaseVoteScoreEndpointResponseSchema: TypedSchema<Types.JSONObject<VoteScoreStoreData>> = {
+export const getBaseVoteScoreEndpointResponseSchema: sTypes.TypedSchema<Types.JSONObject<VoteScoreStoreData>> = {
 	$id: '/governance/endpoint/response/getBaseVoteScore',
 	type: 'object',
 	required: ['score'],
@@ -14,7 +14,7 @@ export const getBaseVoteScoreEndpointResponseSchema: TypedSchema<Types.JSONObjec
 	},
 };
 
-export const getBaseVoteScoreEndpointRequestSchema: TypedSchema<GetBaseVoteScoreParams> = {
+export const getBaseVoteScoreEndpointRequestSchema: sTypes.TypedSchema<GetBaseVoteScoreParams> = {
 	$id: '/governance/endpoint/request/getBaseVoteScore',
 	type: 'object',
 	required: ['address'],

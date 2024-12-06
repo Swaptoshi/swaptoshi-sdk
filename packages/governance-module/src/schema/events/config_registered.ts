@@ -1,7 +1,7 @@
 import { ConfigRegisteredEventData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const configRegisteredEventSchema: TypedSchema<ConfigRegisteredEventData> = {
+export const configRegisteredEventSchema: Types.TypedSchema<ConfigRegisteredEventData> = {
 	$id: '/governance/events/config_registered',
 	type: 'object',
 	required: ['module', 'index'],

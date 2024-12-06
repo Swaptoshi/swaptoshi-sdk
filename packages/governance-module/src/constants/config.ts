@@ -1,4 +1,4 @@
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { GovernanceModuleConfig, QuorumMode } from '../types';
 import { DEFAULT_TREASURY_ADDRESS } from './address';
 

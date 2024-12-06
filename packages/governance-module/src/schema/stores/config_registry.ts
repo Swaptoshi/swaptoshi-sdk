@@ -1,7 +1,7 @@
 import { ConfigRegistryStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const configRegistryStoreSchema: TypedSchema<ConfigRegistryStoreData> = {
+export const configRegistryStoreSchema: Types.TypedSchema<ConfigRegistryStoreData> = {
 	$id: '/governance/store/config_registry',
 	type: 'object',
 	required: ['registry'],

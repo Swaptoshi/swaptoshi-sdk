@@ -1,8 +1,8 @@
 import { Types } from 'klayr-framework';
 import { GetDelegatedVoteParams, DelegatedVoteStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types as sTypes } from '@swaptoshi/utils';
 
-export const getDelegatedVoteEndpointResponseSchema: TypedSchema<Types.JSONObject<DelegatedVoteStoreData>> = {
+export const getDelegatedVoteEndpointResponseSchema: sTypes.TypedSchema<Types.JSONObject<DelegatedVoteStoreData>> = {
 	$id: '/governance/endpoint/response/getDelegatedVote',
 	type: 'object',
 	required: ['outgoingDelegation', 'incomingDelegation'],
@@ -23,7 +23,7 @@ export const getDelegatedVoteEndpointResponseSchema: TypedSchema<Types.JSONObjec
 	},
 };
 
-export const getDelegatedVoteEndpointRequestSchema: TypedSchema<GetDelegatedVoteParams> = {
+export const getDelegatedVoteEndpointRequestSchema: sTypes.TypedSchema<GetDelegatedVoteParams> = {
 	$id: '/governance/endpoint/request/getDelegatedVote',
 	type: 'object',
 	required: ['address'],

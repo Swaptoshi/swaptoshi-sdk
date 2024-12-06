@@ -1,8 +1,8 @@
 import { Types } from 'klayr-framework';
 import { GetBoostedAccountParams, BoostedAccountStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types as sTypes } from '@swaptoshi/utils';
 
-export const getBoostedAccountEndpointResponseSchema: TypedSchema<Types.JSONObject<BoostedAccountStoreData>> = {
+export const getBoostedAccountEndpointResponseSchema: sTypes.TypedSchema<Types.JSONObject<BoostedAccountStoreData>> = {
 	$id: '/governance/endpoint/response/getBoostedAccount',
 	type: 'object',
 	required: ['targetHeight'],
@@ -14,7 +14,7 @@ export const getBoostedAccountEndpointResponseSchema: TypedSchema<Types.JSONObje
 	},
 };
 
-export const getBoostedAccountEndpointRequestSchema: TypedSchema<GetBoostedAccountParams> = {
+export const getBoostedAccountEndpointRequestSchema: sTypes.TypedSchema<GetBoostedAccountParams> = {
 	$id: '/governance/endpoint/request/getBoostedAccount',
 	type: 'object',
 	required: ['address'],

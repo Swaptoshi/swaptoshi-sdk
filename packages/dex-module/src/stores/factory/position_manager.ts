@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules, StateMachine, Types } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import * as IPFSHash from 'ipfs-only-hash';
 import { Uint24String, Int24String, Uint256String, Uint128String, Uint256, Uint160String, Uint128, Uint64String, Int24 } from '../library/int';
 import { PositionInfoStore } from '../position_info';

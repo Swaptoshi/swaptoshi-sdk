@@ -63,7 +63,7 @@
 		"@klayr/cryptography": "^4.1.1",
 		"@klayr/utils": "^0.4.3",
 		"@klayr/validator": "^0.9.1",
-		"@liskhq/lisk-db": "^0.3.10",
+		"@liskhq/lisk-db": "^0.3.7",
 		"@swaptoshi/dex-module": "^1.0.0-alpha.0",
 		"@swaptoshi/fee-conversion-module": "^1.0.0-alpha.0",
 		"@swaptoshi/governance-module": "^1.0.0-alpha.0",

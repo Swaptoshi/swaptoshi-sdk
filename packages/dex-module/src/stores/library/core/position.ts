@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { Uint256String, Int24String, Int128String, Uint128, Int128, Uint256 } from '../int';
 import { PositionInfoStore } from '../../position_info';
 import { ImmutableContext, MutableContext, PositionInfo } from '../../../types';

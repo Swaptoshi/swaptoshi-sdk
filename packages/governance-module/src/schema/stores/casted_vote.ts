@@ -1,7 +1,7 @@
 import { CastedVoteStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const castedVoteStoreSchema: TypedSchema<CastedVoteStoreData> = {
+export const castedVoteStoreSchema: Types.TypedSchema<CastedVoteStoreData> = {
 	$id: '/governance/store/casted_vote',
 	type: 'object',
 	required: ['activeVote'],

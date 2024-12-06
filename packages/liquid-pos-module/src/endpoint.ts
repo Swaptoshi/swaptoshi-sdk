@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Modules, Types } from 'klayr-framework';
 import { InternalLiquidPosMethod } from './internal_method';
-import { serializer } from '@swaptoshi/utils/dist/object';
+import { object } from '@swaptoshi/utils';
 import { LiquidPosGovernableConfig } from './config';
 import { getConfigEndpointResponseSchema, getLSTTokenIDEndpointResponseSchema } from './schema';
 
@@ -15,7 +15,7 @@ export class LiquidPosEndpoint extends Modules.BaseEndpoint {
 	public async getConfig(_context: Types.ModuleEndpointContext) {
 		const configStore = this.stores.get(LiquidPosGovernableConfig);
 		const config = await configStore.getConfig(_context);
-		return serializer(config, getConfigEndpointResponseSchema);
+		return object.serializer(config, getConfigEndpointResponseSchema);
 	}
 
 	public getLSTTokenID(_context: Types.ModuleEndpointContext) {
@@ -24,6 +24,6 @@ export class LiquidPosEndpoint extends Modules.BaseEndpoint {
 
 		if (lstTokenId === undefined) throw new Error('retrieve undefined lst token id');
 
-		return serializer({ tokenID: lstTokenId }, getLSTTokenIDEndpointResponseSchema);
+		return object.serializer({ tokenID: lstTokenId }, getLSTTokenIDEndpointResponseSchema);
 	}
 }

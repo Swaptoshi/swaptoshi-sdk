@@ -1,9 +1,9 @@
 import { Modules } from 'klayr-framework';
-import db from '@liskhq/lisk-db';
-import utils from '@klayr/utils';
+import * as db from '@liskhq/lisk-db';
+import * as utils from '@klayr/utils';
 import { ProposalVoterStoreData } from '../types';
 import { proposalVoterStoreSchema } from '../schema';
-import { numberToBytes } from '@swaptoshi/utils/dist/bytes';
+import { bytes } from '@swaptoshi/utils';
 
 export const defaultProposalVoters = Object.freeze<ProposalVoterStoreData>({
 	voters: [],
@@ -12,7 +12,7 @@ export const defaultProposalVoters = Object.freeze<ProposalVoterStoreData>({
 export class ProposalVoterStore extends Modules.BaseStore<ProposalVoterStoreData> {
 	public async getOrDefault(context: Modules.ImmutableStoreGetter, proposalId: number): Promise<ProposalVoterStoreData> {
 		try {
-			const proposalVoters = await this.get(context, numberToBytes(proposalId));
+			const proposalVoters = await this.get(context, bytes.numberToBytes(proposalId));
 			return proposalVoters;
 		} catch (error) {
 			if (!(error instanceof db.NotFoundError)) {
@@ -28,7 +28,7 @@ export class ProposalVoterStore extends Modules.BaseStore<ProposalVoterStoreData
 		const index = proposalVoters.voters.findIndex(voter => voter.equals(address));
 		if (index === -1) {
 			proposalVoters.voters.push(address);
-			await this.set(context, numberToBytes(proposalId), proposalVoters);
+			await this.set(context, bytes.numberToBytes(proposalId), proposalVoters);
 		}
 	}
 

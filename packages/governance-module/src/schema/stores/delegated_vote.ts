@@ -1,7 +1,7 @@
 import { DelegatedVoteStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const delegatedVoteStoreSchema: TypedSchema<DelegatedVoteStoreData> = {
+export const delegatedVoteStoreSchema: Types.TypedSchema<DelegatedVoteStoreData> = {
 	$id: '/governance/store/delegated_vote',
 	type: 'object',
 	required: ['outgoingDelegation', 'incomingDelegation'],

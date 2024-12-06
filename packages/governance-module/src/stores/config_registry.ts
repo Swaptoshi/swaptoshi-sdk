@@ -1,5 +1,5 @@
 import { Modules } from 'klayr-framework';
-import db from '@liskhq/lisk-db';
+import * as db from '@liskhq/lisk-db';
 import { ConfigRegistryStoreData } from '../types';
 import { configRegistryStoreSchema } from '../schema';
 

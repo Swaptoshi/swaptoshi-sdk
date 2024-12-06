@@ -1,8 +1,8 @@
 import { Types } from 'klayr-framework';
 import { ProposalQueueStoreData, GetProposalQueueParams } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types as sTypes } from '@swaptoshi/utils';
 
-export const getProposalQueueEndpointResponseSchema: TypedSchema<Types.JSONObject<ProposalQueueStoreData>> = {
+export const getProposalQueueEndpointResponseSchema: sTypes.TypedSchema<Types.JSONObject<ProposalQueueStoreData>> = {
 	$id: '/governance/endpoint/response/getProposalQueue',
 	type: 'object',
 	required: ['start', 'quorum', 'ends', 'execute'],
@@ -38,7 +38,7 @@ export const getProposalQueueEndpointResponseSchema: TypedSchema<Types.JSONObjec
 	},
 };
 
-export const getProposalQueueEndpointRequestSchema: TypedSchema<GetProposalQueueParams> = {
+export const getProposalQueueEndpointRequestSchema: sTypes.TypedSchema<GetProposalQueueParams> = {
 	$id: '/governance/endpoint/request/getProposalQueue',
 	type: 'object',
 	required: ['height'],

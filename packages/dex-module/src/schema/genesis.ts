@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import {
 	observationStoreSchema,
 	poolStoreSchema,

@@ -1,7 +1,7 @@
 import { TreasuryBlockRewardTaxEventData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const treasuryBlockRewardTaxEventSchema: TypedSchema<TreasuryBlockRewardTaxEventData> = {
+export const treasuryBlockRewardTaxEventSchema: Types.TypedSchema<TreasuryBlockRewardTaxEventData> = {
 	$id: '/governance/events/treasury_block_reward_tax',
 	type: 'object',
 	required: ['amount', 'generatorAddress'],

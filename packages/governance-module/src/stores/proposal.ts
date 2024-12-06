@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { proposalStoreSchema } from '../schema';
 import { CreateProposalParams, ImmutableGovernanceContext, MutableGovernanceContext, ProposalStatus, ProposalStoreData, QuorumMode, StoreInstance } from '../types';
-import { numberToBytes } from '@swaptoshi/utils/dist/bytes';
+import { bytes } from '@swaptoshi/utils';
 import { BaseStoreWithInstance } from './base';
 import { Proposal } from './instances';
 
@@ -70,7 +70,7 @@ export class ProposalStore extends BaseStoreWithInstance<ProposalStoreData> {
 	}
 
 	public getKey(proposalId: number) {
-		return numberToBytes(proposalId);
+		return bytes.numberToBytes(proposalId);
 	}
 
 	public schema = proposalStoreSchema;

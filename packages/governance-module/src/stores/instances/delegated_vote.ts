@@ -2,13 +2,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules, Types } from 'klayr-framework';
-import cryptography from '@klayr/cryptography';
-import utils from '@klayr/utils';
+import * as cryptography from '@klayr/cryptography';
+import * as utils from '@klayr/utils';
 import { DelegateVoteParams, DelegatedVoteStoreData, RevokeDelegatedVoteParams, VoteScoreArray } from '../../types';
 import { BaseInstance } from './base';
 import { GovernanceGovernableConfig } from '../../config';
-import { serializer } from '@swaptoshi/utils/dist/object';
-import { verifyAddress } from '@swaptoshi/utils/dist/verify';
+import { object, verify } from '@swaptoshi/utils';
 import { DelegatedVoteStore } from '../delegated_vote';
 import { VoteDelegatedEvent } from '../../events/vote_delegated';
 import { DelegatedVoteRevokedEvent } from '../../events/delegated_vote_revoked';
@@ -37,7 +36,7 @@ export class DelegatedVote extends BaseInstance<DelegatedVoteStoreData, Delegate
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<DelegatedVoteStoreData>({
+			object.serializer<DelegatedVoteStoreData>({
 				outgoingDelegation: this.outgoingDelegation,
 				incomingDelegation: this.incomingDelegation,
 			}),
@@ -54,7 +53,7 @@ export class DelegatedVote extends BaseInstance<DelegatedVoteStoreData, Delegate
 	// eslint-disable-next-line @typescript-eslint/require-await
 	public async verifyDelegateVote(params: DelegateVoteParams) {
 		this._checkImmutableDependencies();
-		verifyAddress('params.delegateeAddress', params.delegateeAddress);
+		verify.verifyAddress('params.delegateeAddress', params.delegateeAddress);
 
 		if (Buffer.compare(this.outgoingDelegation, Buffer.alloc(0)) !== 0) {
 			throw new Error(`sender already delegate their vote, revoke it first!`);

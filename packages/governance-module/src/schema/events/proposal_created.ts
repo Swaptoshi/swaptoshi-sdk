@@ -1,7 +1,7 @@
 import { ProposalCreatedEventData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const proposalCreatedEventSchema: TypedSchema<ProposalCreatedEventData> = {
+export const proposalCreatedEventSchema: Types.TypedSchema<ProposalCreatedEventData> = {
 	$id: '/governance/events/proposal_created',
 	type: 'object',
 	required: ['proposalId', 'author'],

@@ -4,8 +4,8 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules } from 'klayr-framework';
-import cryptography from '@klayr/cryptography';
-import utils from '@klayr/utils';
+import * as cryptography from '@klayr/cryptography';
+import * as utils from '@klayr/utils';
 import { Uint24String, Uint256String, Uint160String, Uint256, Int256String, Int256, Uint160, Uint8 } from '../library/int';
 import { PoolStore } from '../pool';
 import { MutableSwapContext, ExactInputParams, ExactInputSingleParams, ExactOutputParams, ExactOutputSingleParams, DexModuleConfig, TokenMethod } from '../../types';

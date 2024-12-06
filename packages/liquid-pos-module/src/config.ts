@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { StateMachine, Types } from 'klayr-framework';
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import { BaseGovernableConfig, GovernableConfigVerifyContext } from '@swaptoshi/governance-module';
 import { defaultConfig } from './constants';
 import { configSchema } from './schema';

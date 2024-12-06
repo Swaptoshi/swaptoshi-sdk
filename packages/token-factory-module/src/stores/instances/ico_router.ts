@@ -3,12 +3,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import { Modules, Types } from 'klayr-framework';
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import { ICOExactInputParams, ICOExactInputSingleParams, ICOExactOutputParams, ICOExactOutputSingleParams, ICOStoreData, ImmutableFactoryContext, MutableFactoryContext } from '../../types';
 import { AddDependenciesParam, BaseInstance } from './base';
 import { ICOStore } from '../ico';
-import { serializer } from '@swaptoshi/utils/dist/object';
-import { verifyPositiveNumber, verifyToken } from '@swaptoshi/utils/dist/verify';
+import { object, verify } from '@swaptoshi/utils';
 import { computeICOPoolAddress } from '../library';
 import { IcoSwapEvent } from '../../events/ico_swap';
 import { TOKEN_ID_LENGTH } from '../../constants';
@@ -33,7 +32,7 @@ export class ICORouter extends BaseInstance<ICOStoreData, ICOStore> implements I
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<ICOStoreData>({
+			object.serializer<ICOStoreData>({
 				price: this.price,
 				providerAddress: this.providerAddress,
 			}),
@@ -56,8 +55,8 @@ export class ICORouter extends BaseInstance<ICOStoreData, ICOStore> implements I
 			throw new Error('exactInput is disabled, since config.icoDexPathEnabled is false or dexMethod dependencies is not configured');
 		}
 
-		verifyToken('tokenOut', params.tokenOut);
-		verifyPositiveNumber('amountIn', params.amountIn);
+		verify.verifyToken('tokenOut', params.tokenOut);
+		verify.verifyPositiveNumber('amountIn', params.amountIn);
 
 		await this._checkICOPathExists(params.path, params.tokenOut, true);
 	}
@@ -95,9 +94,9 @@ export class ICORouter extends BaseInstance<ICOStoreData, ICOStore> implements I
 
 	public async verifyExactInputSingle(params: ICOExactInputSingleParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenIn', params.tokenIn);
-		verifyToken('tokenOut', params.tokenOut);
-		verifyPositiveNumber('amountIn', params.amountIn);
+		verify.verifyToken('tokenIn', params.tokenIn);
+		verify.verifyToken('tokenOut', params.tokenOut);
+		verify.verifyPositiveNumber('amountIn', params.amountIn);
 
 		await this._checkICOExists(computeICOPoolAddress(params));
 	}
@@ -126,8 +125,8 @@ export class ICORouter extends BaseInstance<ICOStoreData, ICOStore> implements I
 			throw new Error('exactOutput is disabled, since config.icoDexPathEnabled is false or dexMethod dependencies is not configured');
 		}
 
-		verifyToken('tokenOut', params.tokenOut);
-		verifyPositiveNumber('amountOut', params.amountOut);
+		verify.verifyToken('tokenOut', params.tokenOut);
+		verify.verifyPositiveNumber('amountOut', params.amountOut);
 
 		await this._checkICOPathExists(params.path, params.tokenOut, false);
 	}
@@ -163,9 +162,9 @@ export class ICORouter extends BaseInstance<ICOStoreData, ICOStore> implements I
 
 	public async verifyExactOuputSingle(params: ICOExactOutputSingleParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenIn', params.tokenIn);
-		verifyToken('tokenOut', params.tokenOut);
-		verifyPositiveNumber('amountOut', params.amountOut);
+		verify.verifyToken('tokenIn', params.tokenIn);
+		verify.verifyToken('tokenOut', params.tokenOut);
+		verify.verifyPositiveNumber('amountOut', params.amountOut);
 
 		await this._checkICOExists(computeICOPoolAddress(params));
 	}

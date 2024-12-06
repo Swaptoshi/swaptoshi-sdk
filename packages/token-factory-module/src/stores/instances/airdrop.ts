@@ -3,13 +3,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import { Modules, Types } from 'klayr-framework';
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import { AirdropCreateParams, AirdropDistributeParams, AirdropEditRecipientsParams, AirdropStoreData } from '../../types';
 import { FactoryStore } from '../factory';
 import { BaseInstance } from './base';
 import { AirdropStore } from '../airdrop';
-import { verifyAddress, verifyPositiveNumber, verifyToken } from '@swaptoshi/utils/dist/verify';
-import { serializer } from '@swaptoshi/utils/dist/object';
+import { object, verify } from '@swaptoshi/utils';
 import { AirdropCreatedEvent } from '../../events/airdrop_created';
 import { AirdropRecipientsChangedEvent } from '../../events/airdrop_recipients_changed';
 import { AirdropDistributedEvent } from '../../events/airdrop_distributed';
@@ -35,7 +34,7 @@ export class Airdrop extends BaseInstance<AirdropStoreData, AirdropStore> implem
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<AirdropStoreData>({
+			object.serializer<AirdropStoreData>({
 				recipients: this.recipients,
 			}),
 		) as Types.JSONObject<AirdropStoreData>;
@@ -49,8 +48,8 @@ export class Airdrop extends BaseInstance<AirdropStoreData, AirdropStore> implem
 
 	public async verifyCreate(params: AirdropCreateParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenId', params.tokenId);
-		verifyAddress('providerAddress', params.providerAddress);
+		verify.verifyToken('tokenId', params.tokenId);
+		verify.verifyAddress('providerAddress', params.providerAddress);
 		this._verifyRecipientsParam(params.recipients, true);
 
 		await this._checkFactoryOwner(params.tokenId);
@@ -76,7 +75,7 @@ export class Airdrop extends BaseInstance<AirdropStoreData, AirdropStore> implem
 
 	public async verifyEditRecipients(params: AirdropEditRecipientsParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenId', params.tokenId);
+		verify.verifyToken('tokenId', params.tokenId);
 		this._verifyRecipientsParam(params.recipients);
 
 		await this._checkAirdropExists(params.tokenId, this.immutableContext!.senderAddress);
@@ -118,7 +117,7 @@ export class Airdrop extends BaseInstance<AirdropStoreData, AirdropStore> implem
 
 	public async verifyDistribute(params: AirdropDistributeParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenId', params.tokenId);
+		verify.verifyToken('tokenId', params.tokenId);
 
 		await this._checkAirdropExists(params.tokenId, this.immutableContext!.senderAddress);
 		await this._checkProviderBalance(params);
@@ -195,8 +194,8 @@ export class Airdrop extends BaseInstance<AirdropStoreData, AirdropStore> implem
 
 	private _verifyRecipientsParam(recipients: AirdropEditRecipientsParams['recipients'], positiveAmount = false) {
 		for (const recipient of recipients) {
-			verifyAddress('recipients.address', recipient.address);
-			if (positiveAmount) verifyPositiveNumber('recipients.amountDelta', recipient.amountDelta);
+			verify.verifyAddress('recipients.address', recipient.address);
+			if (positiveAmount) verify.verifyPositiveNumber('recipients.amountDelta', recipient.amountDelta);
 		}
 	}
 

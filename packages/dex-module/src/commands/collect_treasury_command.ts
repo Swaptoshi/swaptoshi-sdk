@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Modules, StateMachine } from 'klayr-framework';
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { collectTreasuryCommandSchema } from '../schema';
 import { CollectParams, CollectTreasuryParams } from '../types';
 import { verifyCollectTreasuryParam } from '../utils';

@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import { Modules, Types } from 'klayr-framework';
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import {
 	FactorySetAttributesParams,
 	FactoryStoreData,
@@ -19,9 +19,7 @@ import { NextAvailableTokenIdStore } from '../next_available_token_id';
 import { FactoryCreatedEvent } from '../../events/factory_created';
 import { BaseInstance } from './base';
 import { VestingUnlockStore } from '../vesting_unlock';
-import { numberToBytes } from '@swaptoshi/utils/dist/bytes';
-import { serializer } from '@swaptoshi/utils/dist/object';
-import { verifyAddress, verifyBuffer, verifyPositiveNumber, verifyString, verifyToken } from '@swaptoshi/utils/dist/verify';
+import { object, verify, bytes } from '@swaptoshi/utils';
 import { FactoryOwnerChangedEvent } from '../../events/factory_owner_changed';
 import { FactorySetAttributesEvent } from '../../events/factory_set_attributes';
 import { TokenFactoryGovernableConfig } from '../../config';
@@ -48,7 +46,7 @@ export class Factory extends BaseInstance<FactoryStoreData, FactoryStore> implem
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<FactoryStoreData>({
+			object.serializer<FactoryStoreData>({
 				owner: this.owner,
 				attributesArray: this.attributesArray,
 			}),
@@ -128,7 +126,7 @@ export class Factory extends BaseInstance<FactoryStoreData, FactoryStore> implem
 
 	public async verifyMint(params: TokenMintParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenId', params.tokenId);
+		verify.verifyToken('tokenId', params.tokenId);
 
 		await this._verifyHandleMintDistribution(params.distribution);
 		await this._checkFactoryExists(params.tokenId);
@@ -145,8 +143,8 @@ export class Factory extends BaseInstance<FactoryStoreData, FactoryStore> implem
 
 	public async verifyBurn(params: TokenBurnParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenId', params.tokenId);
-		verifyPositiveNumber('amount', params.amount);
+		verify.verifyToken('tokenId', params.tokenId);
+		verify.verifyPositiveNumber('amount', params.amount);
 
 		await this._checkFactoryExists(params.tokenId);
 		await this._checkIsFactoryOwner();
@@ -167,8 +165,8 @@ export class Factory extends BaseInstance<FactoryStoreData, FactoryStore> implem
 
 	public async verifyTransferOwnership(params: FactoryTransferOwnershipParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenId', params.tokenId);
-		verifyAddress('ownerAddress', params.ownerAddress);
+		verify.verifyToken('tokenId', params.tokenId);
+		verify.verifyAddress('ownerAddress', params.ownerAddress);
 
 		await this._checkFactoryExists(params.tokenId);
 		await this._checkIsFactoryOwner();
@@ -195,9 +193,9 @@ export class Factory extends BaseInstance<FactoryStoreData, FactoryStore> implem
 
 	public async verifySetAttributes(params: FactorySetAttributesParams) {
 		this._checkImmutableDependencies();
-		verifyToken('tokenId', params.tokenId);
-		verifyString('key', params.key);
-		verifyBuffer('attributes', params.attributes);
+		verify.verifyToken('tokenId', params.tokenId);
+		verify.verifyString('key', params.key);
+		verify.verifyBuffer('attributes', params.attributes);
 
 		await this._checkFactoryExists(params.tokenId);
 		await this._checkIsFactoryOwner();
@@ -330,11 +328,11 @@ export class Factory extends BaseInstance<FactoryStoreData, FactoryStore> implem
 	}
 
 	private async _getUnlockScheduleAtHeight(height: number) {
-		return this.vestingUnlockStore.getOrDefault(this.mutableContext!.context, numberToBytes(height));
+		return this.vestingUnlockStore.getOrDefault(this.mutableContext!.context, bytes.numberToBytes(height));
 	}
 
 	private async _setUnlockScheduleAtHeight(height: number, vestingUnlock: VestingUnlockStoreData) {
-		await this.vestingUnlockStore.set(this.mutableContext!.context, numberToBytes(height), vestingUnlock);
+		await this.vestingUnlockStore.set(this.mutableContext!.context, bytes.numberToBytes(height), vestingUnlock);
 	}
 
 	// eslint-disable-next-line @typescript-eslint/require-await
@@ -358,21 +356,21 @@ export class Factory extends BaseInstance<FactoryStoreData, FactoryStore> implem
 	// eslint-disable-next-line @typescript-eslint/require-await
 	private async _verifyAttributesArray(attributesArray: TokenFactoryAttributes[]) {
 		for (const attributes of attributesArray) {
-			verifyString('attributes.key', attributes.key);
-			verifyBuffer('attributes.attributes', attributes.attributes);
+			verify.verifyString('attributes.key', attributes.key);
+			verify.verifyBuffer('attributes.attributes', attributes.attributes);
 		}
 	}
 
 	// eslint-disable-next-line @typescript-eslint/require-await
 	private async _verifyHandleMintDistribution(distribution: TokenMintParams['distribution']) {
 		for (const distributionItem of distribution) {
-			verifyAddress('distribution.recipientAddress', distributionItem.recipientAddress);
-			verifyPositiveNumber('distribution.amount', distributionItem.amount);
+			verify.verifyAddress('distribution.recipientAddress', distributionItem.recipientAddress);
+			verify.verifyPositiveNumber('distribution.amount', distributionItem.amount);
 
 			if (distributionItem.vesting.length > 0) {
 				let totalAmount = BigInt(0);
 				for (const vestingItem of distributionItem.vesting) {
-					verifyPositiveNumber('distribution.vesting.height', vestingItem.height);
+					verify.verifyPositiveNumber('distribution.vesting.height', vestingItem.height);
 
 					if (vestingItem.amount <= BigInt(0)) {
 						throw new Error('vested token amount must be positive non zero integer');

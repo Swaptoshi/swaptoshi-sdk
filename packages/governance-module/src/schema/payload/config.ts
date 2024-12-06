@@ -1,7 +1,7 @@
 import { ConfigActionPayload } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const configActionPayloadSchema: TypedSchema<ConfigActionPayload> = {
+export const configActionPayloadSchema: Types.TypedSchema<ConfigActionPayload> = {
 	$id: '/governance/action/config',
 	type: 'object',
 	required: ['moduleName', 'paramPath', 'value'],

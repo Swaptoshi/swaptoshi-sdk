@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { DexModuleConfig } from '../types';
 import { DEFAULT_TREASURY_ADDRESS } from './address';
 import { DEX_DEFAULT_NAME, DEX_DEFAULT_TOKEN_DECIMAL, DEX_DEFAULT_TOKEN_SYMBOL, MAINCHAIN_DEFAULT_TOKEN_DECIMAL, MAINCHAIN_DEFAULT_TOKEN_SYMBOL } from './token_symbol';

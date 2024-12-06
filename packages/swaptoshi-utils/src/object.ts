@@ -1,5 +1,5 @@
 import { Schema } from '@klayr/codec';
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { ConfigPathKeys, ConfigPathType, UpdatedProperty } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

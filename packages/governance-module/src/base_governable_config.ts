@@ -5,16 +5,16 @@
 
 import { Modules, Types, StateMachine } from 'klayr-framework';
 import { Schema, codec } from '@klayr/codec';
-import utils from '@klayr/utils';
-import validator from '@klayr/validator';
+import * as utils from '@klayr/utils';
+import * as validator from '@klayr/validator';
 import { emptySchema } from '@klayr/codec';
 import { IterateOptions } from '@liskhq/lisk-db';
 import { GovernableConfigSetContext, GovernableConfigStoreData, GovernableConfigVerifyContext } from './types';
 import { governableConfigSchema } from './schema';
-import { getSchemaByPath, getUpdatedProperties, getValueFromPath, pathExists, removeProperty, updateValueFromPath } from '@swaptoshi/utils/dist/object';
+import { object } from '@swaptoshi/utils';
 import { ConfigUpdatedEvent } from './events/config_updated';
 import { GovernanceMethod } from './method';
-import { ConfigPathKeys, ConfigPathType, UpdatedProperty } from '@swaptoshi/utils/dist/types';
+import { Types as sTypes } from '@swaptoshi/utils';
 
 /**
  * The `BaseGovernableConfig` provides a framework for implementing on-chain configurations that can be managed through proposals in the `governance` module.
@@ -149,8 +149,8 @@ export abstract class BaseGovernableConfig<T extends object> extends Modules.Bas
 		this.default = utils.objects.mergeDeep({}, this.default, args.moduleConfig) as T;
 
 		// verify all properties on assigned config is defined on the schema
-		validator.validator.validate(removeProperty(this.schema, ['governable']) as Schema, this.default);
-		getUpdatedProperties({}, this.default, this.schema);
+		validator.validator.validate(object.removeProperty(this.schema, ['governable']) as Schema, this.default);
+		object.getUpdatedProperties({}, this.default, this.schema);
 
 		this.initialized = true;
 	}
@@ -181,7 +181,7 @@ export abstract class BaseGovernableConfig<T extends object> extends Modules.Bas
 
 		if (this.registered) {
 			const configStore = await this.get(context, this.storeKey);
-			return codec.decode<T>(removeProperty(this.schema, ['governable']) as Schema, configStore.data);
+			return codec.decode<T>(object.removeProperty(this.schema, ['governable']) as Schema, configStore.data);
 		}
 		return this.default;
 	}
@@ -205,12 +205,12 @@ export abstract class BaseGovernableConfig<T extends object> extends Modules.Bas
 	 * @returns The value at the specified path in the configuration.
 	 * @throws Will throw an error if the path does not exist in the configuration.
 	 */
-	public async getConfigWithPath<P extends ConfigPathKeys<T>>(context: Modules.ImmutableStoreGetter, path: P): Promise<ConfigPathType<T, P>> {
+	public async getConfigWithPath<P extends sTypes.ConfigPathKeys<T>>(context: Modules.ImmutableStoreGetter, path: P): Promise<sTypes.ConfigPathType<T, P>> {
 		const config = (await this.getConfig(context)) as T;
-		if (!pathExists(config, path)) {
+		if (!object.pathExists(config, path)) {
 			throw new Error(`config with path ${path} on ${this.name} dosen't exists`);
 		}
-		const ret = getValueFromPath(config, path);
+		const ret = object.getValueFromPath(config, path);
 		return ret;
 	}
 
@@ -222,12 +222,12 @@ export abstract class BaseGovernableConfig<T extends object> extends Modules.Bas
 	 * @param value - The value to set at the specified path.
 	 * @throws Will throw an error if the path does not exist in the configuration.
 	 */
-	public async setConfigWithPath<P extends ConfigPathKeys<T>>(context: StateMachine.MethodContext, path: P, value: ConfigPathType<T, P>): Promise<void> {
+	public async setConfigWithPath<P extends sTypes.ConfigPathKeys<T>>(context: StateMachine.MethodContext, path: P, value: sTypes.ConfigPathType<T, P>): Promise<void> {
 		const config = (await this.getConfig(context)) as T;
-		if (!pathExists(config, path)) {
+		if (!object.pathExists(config, path)) {
 			throw new Error(`config with path ${path} on ${this.name} dosen't exists`);
 		}
-		const updatedConfig = updateValueFromPath(config, path, value);
+		const updatedConfig = object.updateValueFromPath(config, path, value);
 		await this.setConfig(context, updatedConfig);
 	}
 
@@ -237,7 +237,7 @@ export abstract class BaseGovernableConfig<T extends object> extends Modules.Bas
 	 * @param context - The context for setting the store.
 	 * @param value - The new configuration value.
 	 */
-	public async dryRunSetConfig(context: StateMachine.ImmutableMethodContext, value: T): Promise<UpdatedProperty[]> {
+	public async dryRunSetConfig(context: StateMachine.ImmutableMethodContext, value: T): Promise<sTypes.UpdatedProperty[]> {
 		return this._setConfigHandler(context as StateMachine.MethodContext, value, false, true);
 	}
 
@@ -249,12 +249,16 @@ export abstract class BaseGovernableConfig<T extends object> extends Modules.Bas
 	 * @param value - The value to set at the specified path.
 	 * @throws Will throw an error if the path does not exist in the configuration.
 	 */
-	public async dryRunSetConfigWithPath<P extends ConfigPathKeys<T>>(context: StateMachine.ImmutableMethodContext, path: P, value: ConfigPathType<T, P>): Promise<UpdatedProperty[]> {
+	public async dryRunSetConfigWithPath<P extends sTypes.ConfigPathKeys<T>>(
+		context: StateMachine.ImmutableMethodContext,
+		path: P,
+		value: sTypes.ConfigPathType<T, P>,
+	): Promise<sTypes.UpdatedProperty[]> {
 		const config = (await this.getConfig(context)) as T;
-		if (!pathExists(config, path)) {
+		if (!object.pathExists(config, path)) {
 			throw new Error(`config with path ${path} on ${this.name} dosen't exists`);
 		}
-		const updatedConfig = updateValueFromPath(config, path, value);
+		const updatedConfig = object.updateValueFromPath(config, path, value);
 		return this.dryRunSetConfig(context, updatedConfig);
 	}
 
@@ -273,9 +277,9 @@ export abstract class BaseGovernableConfig<T extends object> extends Modules.Bas
 
 		const verify = await this.verify({ context, config: value, genesisConfig: this.genesisConfig });
 		if (verify.status !== StateMachine.VerifyStatus.OK) throw new Error(`failed to verify governable config for ${this.name}: ${verify.error ? verify.error.message : 'unknown'}`);
-		validator.validator.validate<T>(removeProperty(this.schema, ['governable']) as Schema, value);
+		validator.validator.validate<T>(object.removeProperty(this.schema, ['governable']) as Schema, value);
 
-		let updatedPaths: UpdatedProperty[] = [];
+		let updatedPaths: sTypes.UpdatedProperty[] = [];
 
 		let oldConfig: T = {} as T;
 		if (await this.has(context, this.storeKey)) oldConfig = (await this.getConfig(context)) as T;
@@ -283,18 +287,18 @@ export abstract class BaseGovernableConfig<T extends object> extends Modules.Bas
 		if (mutateState) await this.beforeSetConfig({ ...context, oldConfig, newConfig: value });
 
 		if (this.registered) {
-			updatedPaths = getUpdatedProperties(oldConfig, value, this.schema);
+			updatedPaths = object.getUpdatedProperties(oldConfig, value, this.schema);
 
 			if (verifyGovernability) {
 				for (const updatedPath of updatedPaths) {
-					if ((getSchemaByPath(this.schema, updatedPath.path) as Schema & { governable?: boolean }).governable === false) {
+					if ((object.getSchemaByPath(this.schema, updatedPath.path) as Schema & { governable?: boolean }).governable === false) {
 						throw new Error(`attempt to modify non-governable config: ${updatedPath.path}`);
 					}
 				}
 			}
 
 			if (mutateState) {
-				await this.set(context, this.storeKey, { data: codec.encode(removeProperty(this.schema, ['governable']) as Schema, value) });
+				await this.set(context, this.storeKey, { data: codec.encode(object.removeProperty(this.schema, ['governable']) as Schema, value) });
 
 				const events = this.governanceEvent.get(ConfigUpdatedEvent);
 

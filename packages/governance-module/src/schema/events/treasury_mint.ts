@@ -1,7 +1,7 @@
 import { TreasuryMintEventData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const treasuryMintEventSchema: TypedSchema<TreasuryMintEventData> = {
+export const treasuryMintEventSchema: Types.TypedSchema<TreasuryMintEventData> = {
 	$id: '/governance/events/treasury_mint',
 	type: 'object',
 	required: ['amount'],

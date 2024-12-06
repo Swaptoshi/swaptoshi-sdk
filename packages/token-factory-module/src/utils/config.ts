@@ -1,21 +1,21 @@
 import { TokenFactoryModuleConfig } from '../types';
-import { verifyBoolean, verifyKlayer32Address, verifyNumberString, verifyPositiveNumber } from '@swaptoshi/utils/dist/verify';
+import { verify } from '@swaptoshi/utils';
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function verifyModuleConfig(config: TokenFactoryModuleConfig) {
-	verifyKlayer32Address('config.icoLeftOverAddress', config.icoLeftOverAddress);
+	verify.verifyKlayer32Address('config.icoLeftOverAddress', config.icoLeftOverAddress);
 
-	verifyBoolean('config.icoFeeConversionEnabled', config.icoFeeConversionEnabled);
+	verify.verifyBoolean('config.icoFeeConversionEnabled', config.icoFeeConversionEnabled);
 
-	verifyBoolean('config.icoDexPathEnabled', config.icoDexPathEnabled);
+	verify.verifyBoolean('config.icoDexPathEnabled', config.icoDexPathEnabled);
 
 	for (const commands of Object.keys(config.minTransactionFee)) {
-		verifyNumberString(`config.minTransactionFee.${commands}`, config.minTransactionFee[commands as keyof TokenFactoryModuleConfig['minTransactionFee']]);
-		verifyPositiveNumber(`config.minTransactionFee.${commands}`, config.minTransactionFee[commands as keyof TokenFactoryModuleConfig['minTransactionFee']]);
+		verify.verifyNumberString(`config.minTransactionFee.${commands}`, config.minTransactionFee[commands as keyof TokenFactoryModuleConfig['minTransactionFee']]);
+		verify.verifyPositiveNumber(`config.minTransactionFee.${commands}`, config.minTransactionFee[commands as keyof TokenFactoryModuleConfig['minTransactionFee']]);
 	}
 
 	for (const commands of Object.keys(config.baseFee)) {
-		verifyNumberString(`config.baseFee.${commands}`, config.baseFee[commands as keyof TokenFactoryModuleConfig['baseFee']]);
-		verifyPositiveNumber(`config.baseFee.${commands}`, config.baseFee[commands as keyof TokenFactoryModuleConfig['baseFee']]);
+		verify.verifyNumberString(`config.baseFee.${commands}`, config.baseFee[commands as keyof TokenFactoryModuleConfig['baseFee']]);
+		verify.verifyPositiveNumber(`config.baseFee.${commands}`, config.baseFee[commands as keyof TokenFactoryModuleConfig['baseFee']]);
 	}
 }

@@ -1,7 +1,7 @@
 import { BoostVoteParams } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const boostVoteCommandSchema: TypedSchema<BoostVoteParams> = {
+export const boostVoteCommandSchema: Types.TypedSchema<BoostVoteParams> = {
 	$id: '/governance/command/boost_vote',
 	type: 'object',
 	required: ['targetHeight'],

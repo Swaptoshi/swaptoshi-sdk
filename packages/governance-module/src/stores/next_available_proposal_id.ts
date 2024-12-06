@@ -1,6 +1,6 @@
 import { Modules } from 'klayr-framework';
-import db from '@liskhq/lisk-db';
-import utils from '@klayr/utils';
+import * as db from '@liskhq/lisk-db';
+import * as utils from '@klayr/utils';
 import { NextAvailableProposalIdStoreData } from '../types';
 import { nextAvailableProposalIdStoreSchema } from '../schema';
 

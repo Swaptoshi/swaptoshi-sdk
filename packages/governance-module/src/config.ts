@@ -1,13 +1,13 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Types, StateMachine } from 'klayr-framework';
-import cryptography from '@klayr/cryptography';
-import utils from '@klayr/utils';
+import * as cryptography from '@klayr/cryptography';
+import * as utils from '@klayr/utils';
 import { BaseGovernableConfig } from './base_governable_config';
 import { DEFAULT_MAX_BOOST_DURATION_DAY, DEFAULT_VOTE_DURATION_DAY, defaultConfig } from './constants';
 import { configSchema } from './schema';
 import { GovernableConfigVerifyContext, GovernanceModuleConfig, QuorumMode } from './types';
-import { verifyNumberString, verifyPositiveNumber } from '@swaptoshi/utils/dist/verify';
+import { verify } from '@swaptoshi/utils';
 import { GovernanceInternalMethod } from './internal_method';
 
 export class GovernanceGovernableConfig extends BaseGovernableConfig<GovernanceModuleConfig> {
@@ -72,13 +72,13 @@ export class GovernanceGovernableConfig extends BaseGovernableConfig<GovernanceM
 		}
 
 		for (const commands of Object.keys(config.minTransactionFee)) {
-			verifyNumberString(`config.minTransactionFee.${commands}`, config.minTransactionFee[commands as keyof GovernanceModuleConfig['minTransactionFee']]);
-			verifyPositiveNumber(`config.minTransactionFee.${commands}`, config.minTransactionFee[commands as keyof GovernanceModuleConfig['minTransactionFee']]);
+			verify.verifyNumberString(`config.minTransactionFee.${commands}`, config.minTransactionFee[commands as keyof GovernanceModuleConfig['minTransactionFee']]);
+			verify.verifyPositiveNumber(`config.minTransactionFee.${commands}`, config.minTransactionFee[commands as keyof GovernanceModuleConfig['minTransactionFee']]);
 		}
 
 		for (const commands of Object.keys(config.baseFee)) {
-			verifyNumberString(`config.baseFee.${commands}`, config.baseFee[commands as keyof GovernanceModuleConfig['baseFee']]);
-			verifyPositiveNumber(`config.baseFee.${commands}`, config.baseFee[commands as keyof GovernanceModuleConfig['baseFee']]);
+			verify.verifyNumberString(`config.baseFee.${commands}`, config.baseFee[commands as keyof GovernanceModuleConfig['baseFee']]);
+			verify.verifyPositiveNumber(`config.baseFee.${commands}`, config.baseFee[commands as keyof GovernanceModuleConfig['baseFee']]);
 		}
 
 		for (const mintBracket of config.treasuryReward.mintBracket) {

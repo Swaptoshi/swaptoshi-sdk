@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Modules, StateMachine, Types } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import validator from '@klayr/validator';
+import * as validator from '@klayr/validator';
 import { genesisStoreSchema } from 'klayr-framework/dist-node/modules/pos/schemas';
 import { MethodContext } from 'klayr-framework/dist-node/state_machine';
 import BigNumber from 'bignumber.js';

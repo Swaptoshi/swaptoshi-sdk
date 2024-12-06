@@ -3,11 +3,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules, Types, StateMachine } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import { BoostVoteParams, BoostedAccountStoreData, StakeTransactionParams } from '../../types';
 import { BaseInstance } from './base';
 import { GovernanceGovernableConfig } from '../../config';
-import { serializer } from '@swaptoshi/utils/dist/object';
+import { object } from '@swaptoshi/utils';
 import { BoostedAccountStore } from '../boosted_account';
 import { POS_MODULE_NAME, POS_STAKE_COMMAND_NAME } from '../../constants';
 import { stakeCommandParamsSchema } from '../../schema';
@@ -33,7 +33,7 @@ export class BoostedAccount extends BaseInstance<BoostedAccountStoreData, Booste
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<BoostedAccountStoreData>({
+			object.serializer<BoostedAccountStoreData>({
 				targetHeight: this.targetHeight,
 			}),
 		) as Types.JSONObject<BoostedAccountStoreData>;

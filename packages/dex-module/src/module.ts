@@ -4,7 +4,7 @@
 
 import { Modules, StateMachine } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import validator from '@klayr/validator';
+import * as validator from '@klayr/validator';
 import { FeeConversionMethod } from '@swaptoshi/fee-conversion-module';
 import { GovernanceMethod } from '@swaptoshi/governance-module';
 import { DexInteroperableMethod } from './cc_method';

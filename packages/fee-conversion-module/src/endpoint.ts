@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Modules, Transaction, StateMachine, transactionSchema, Types } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { FeeConversionMethodRegistry } from './registry';
 import { DryRunTransactionResponse, FeeConversionVerifyStatus, RegisteredMethod, RegisteredMethodResponse } from './types';
 import { object } from '@swaptoshi/utils';

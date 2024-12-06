@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules } from 'klayr-framework';
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { DEXPoolData, Slot0, ImmutableSwapContext, MutableSwapContext, MutableContext, TreasurifyParams, TokenMethod } from '../types';
 import { Uint24String } from './library/int';
 import { NFTDescriptor, PoolAddress } from './library/periphery';

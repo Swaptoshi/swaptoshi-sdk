@@ -1,4 +1,4 @@
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import { airdropStoreSchema, factoryStoreSchema, icoStoreSchema, nextAvailableTokenIdStoreSchema, vestingUnlockStoreSchema } from './stores';
 
 const genesisSchemaBuilder = (

@@ -1,7 +1,7 @@
 import { VoteBoostedEventData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const voteBoostedEventSchema: TypedSchema<VoteBoostedEventData> = {
+export const voteBoostedEventSchema: Types.TypedSchema<VoteBoostedEventData> = {
 	$id: '/governance/events/vote_boosted',
 	type: 'object',
 	required: ['address', 'targetHeight'],

@@ -1,7 +1,7 @@
 import { ProposalStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const proposalStoreSchema: TypedSchema<ProposalStoreData> = {
+export const proposalStoreSchema: Types.TypedSchema<ProposalStoreData> = {
 	$id: '/governance/store/proposal',
 	type: 'object',
 	required: ['title', 'summary', 'deposited', 'author', 'turnout', 'parameters', 'voteSummary', 'status', 'actions', 'attributes'],

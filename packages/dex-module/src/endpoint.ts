@@ -1,5 +1,5 @@
 import { Modules, Types } from 'klayr-framework';
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { endpointSwapContext } from './stores/context';
 import { Quoter } from './stores/library/lens';
 import {

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { Modules, Types } from 'klayr-framework';
-import db from '@liskhq/lisk-db';
-import utils from '@klayr/utils';
+import * as db from '@liskhq/lisk-db';
+import * as utils from '@klayr/utils';
 import { DexMethod } from '@swaptoshi/dex-module';
 import { TokenFactoryGovernableConfig } from '../config';
 import { FeeMethod, TokenMethod } from '../types';

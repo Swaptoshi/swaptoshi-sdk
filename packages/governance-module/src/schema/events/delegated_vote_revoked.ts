@@ -1,7 +1,7 @@
 import { DelegatedVoteRevokedEventData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const delegatedVoteRevokedEventSchema: TypedSchema<DelegatedVoteRevokedEventData> = {
+export const delegatedVoteRevokedEventSchema: Types.TypedSchema<DelegatedVoteRevokedEventData> = {
 	$id: '/governance/events/delegated_vote_revoked',
 	type: 'object',
 	required: ['delegateeAddress', 'delegatorAddress'],

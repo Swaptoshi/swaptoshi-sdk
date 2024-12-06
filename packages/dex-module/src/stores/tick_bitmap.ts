@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { Modules } from 'klayr-framework';
-import db from '@liskhq/lisk-db';
+import * as db from '@liskhq/lisk-db';
 import { TickBitmap } from '../types';
 import { Int16String } from './library/int';
 import { tickBitmapStoreSchema } from '../schema';

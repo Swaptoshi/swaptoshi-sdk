@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { Modules, Types } from 'klayr-framework';
-import utils from '@klayr/utils';
-import db from '@liskhq/lisk-db';
+import * as utils from '@klayr/utils';
+import * as db from '@liskhq/lisk-db';
 import { GovernanceGovernableConfig } from '../config';
 import { GovernableConfigRegistry } from '../registry';
 import { GovernanceInternalMethod } from '../internal_method';

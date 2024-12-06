@@ -2,8 +2,8 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules } from 'klayr-framework';
-import cryptography from '@klayr/cryptography';
-import utils from '@klayr/utils';
+import * as cryptography from '@klayr/cryptography';
+import * as utils from '@klayr/utils';
 import { PositionInfo, Slot0, DEXPoolData, DexModuleConfig, ImmutableSwapContext, MutableSwapContext, MutableContext, ImmutableContext, TickInfo, TokenMethod } from '../../types';
 import { Tick, Oracle, TickMath, SqrtPriceMath, LiquidityMath, Position, TickBitmap, SwapMath, FullMath, FixedPoint128 } from '../library/core';
 import {

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { Modules } from 'klayr-framework';
-import utils from '@klayr/utils';
-import db from '@liskhq/lisk-db';
+import * as utils from '@klayr/utils';
+import * as db from '@liskhq/lisk-db';
 import { TickInfo } from '../types';
 import { Int24String } from './library/int';
 import { tickInfoStoreSchema } from '../schema';

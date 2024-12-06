@@ -1,7 +1,7 @@
 import { CreateProposalParams } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const createProposalCommandSchema: TypedSchema<CreateProposalParams> = {
+export const createProposalCommandSchema: Types.TypedSchema<CreateProposalParams> = {
 	$id: '/governance/command/create_proposal',
 	type: 'object',
 	required: ['title', 'summary', 'actions', 'attributes'],

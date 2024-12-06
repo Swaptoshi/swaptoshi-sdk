@@ -1,4 +1,4 @@
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 
 const POOL_ADDRESS_LENGTH = 20;
 const TOKEN_ID_LENGTH = 8;

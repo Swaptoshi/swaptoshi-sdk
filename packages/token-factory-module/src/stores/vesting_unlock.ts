@@ -3,7 +3,7 @@
 
 import { MutableFactoryContext, StoreInstance, VestingUnlockStoreData } from '../types';
 import { vestingUnlockStoreSchema } from '../schema';
-import { numberToBytes } from '@swaptoshi/utils/dist/bytes';
+import { bytes } from '@swaptoshi/utils';
 import { VestingUnlock } from './instances/vesting_unlock';
 import { BaseStoreWithInstance } from './base';
 
@@ -11,7 +11,7 @@ export class VestingUnlockStore extends BaseStoreWithInstance<VestingUnlockStore
 	public async getInstance(ctx: MutableFactoryContext): Promise<StoreInstance<VestingUnlock>> {
 		this._checkDependencies();
 
-		const vestingUnlockData = await this.getOrDefault(ctx.context, numberToBytes(ctx.height));
+		const vestingUnlockData = await this.getOrDefault(ctx.context, bytes.numberToBytes(ctx.height));
 
 		const vestingUnlock = new VestingUnlock(this.stores, this.events, this.config!, this.genesisConfig!, this.moduleName, vestingUnlockData, ctx.height);
 

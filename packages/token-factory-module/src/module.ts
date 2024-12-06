@@ -3,7 +3,7 @@
 
 import { Modules, StateMachine } from 'klayr-framework';
 import { codec } from '@klayr/codec';
-import validator from '@klayr/validator';
+import * as validator from '@klayr/validator';
 import { DexMethod } from '@swaptoshi/dex-module';
 import { FeeConversionMethod } from '@swaptoshi/fee-conversion-module';
 import { TokenFactoryInteroperableMethod } from './cc_method';
@@ -72,7 +72,7 @@ import { VestingUnlockStore } from './stores/vesting_unlock';
 import { FeeMethod, NFTMethod, TokenFactoryGenesisStore, TokenFactoryModuleDependencies, TokenMethod } from './types';
 import { TokenFactoryGovernableConfig } from './config';
 import { GovernanceMethod } from '@swaptoshi/governance-module';
-import { numberToBytes } from '@swaptoshi/utils/dist/bytes';
+import { bytes } from '@swaptoshi/utils';
 
 export class TokenFactoryModule extends Modules.Interoperability.BaseInteroperableModule {
 	public _config: TokenFactoryGovernableConfig = new TokenFactoryGovernableConfig(this.name, 5);
@@ -379,7 +379,7 @@ export class TokenFactoryModule extends Modules.Interoperability.BaseInteroperab
 			}
 
 			// set state
-			await vestingUnlockStore.set(context, numberToBytes(vestingUnlockData.height), vestingUnlockData);
+			await vestingUnlockStore.set(context, bytes.numberToBytes(vestingUnlockData.height), vestingUnlockData);
 		}
 	}
 }

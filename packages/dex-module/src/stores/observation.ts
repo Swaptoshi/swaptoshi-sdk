@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { Modules } from 'klayr-framework';
-import utils from '@klayr/utils';
-import db from '@liskhq/lisk-db';
+import * as utils from '@klayr/utils';
+import * as db from '@liskhq/lisk-db';
 import { Observation } from '../types';
 import { Int16String } from './library/int';
 import { observationStoreSchema } from '../schema';

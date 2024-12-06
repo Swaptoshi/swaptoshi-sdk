@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import cryptography from '@klayr/cryptography';
+import * as cryptography from '@klayr/cryptography';
 import { Uint24String } from '../int';
 
 export interface PoolKey {

@@ -1,7 +1,7 @@
 import { FundingActionPayload } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const fundingActionPayloadSchema: TypedSchema<FundingActionPayload> = {
+export const fundingActionPayloadSchema: Types.TypedSchema<FundingActionPayload> = {
 	$id: '/governance/action/funding',
 	type: 'object',
 	required: ['tokenId', 'receivingAddress', 'fundingAmount'],

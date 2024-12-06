@@ -1,4 +1,4 @@
-import { SchemaPropertiesFields, TypeScriptTypeToSchemaType } from '@swaptoshi/utils/dist/types';
+import { Types as sTypes } from '@swaptoshi/utils';
 import { StateMachine, Types } from 'klayr-framework';
 
 export interface GovernableConfigStoreData {
@@ -25,5 +25,5 @@ type ObjectSchemaWithGovernableProps<T> = {
 };
 
 type SchemaPropertiesWithGovernableProps<T> = {
-	[K in keyof T]: K extends keyof T ? TypeScriptTypeToSchemaType<T[K]> & SchemaPropertiesFields & { governable?: boolean } : never;
+	[K in keyof T]: K extends keyof T ? sTypes.TypeScriptTypeToSchemaType<T[K]> & sTypes.SchemaPropertiesFields & { governable?: boolean } : never;
 };

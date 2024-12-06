@@ -3,15 +3,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import { Modules, Types } from 'klayr-framework';
-import utils from '@klayr/utils';
+import * as utils from '@klayr/utils';
 import { VestingUnlockStoreData } from '../../types';
 import { BaseInstance } from './base';
-import { serializer } from '@swaptoshi/utils/dist/object';
+import { object, bytes } from '@swaptoshi/utils';
 import { VestingUnlockStore } from '../vesting_unlock';
 import { VestedTokenUnlockedEvent } from '../../events/vested_token_unlocked';
 import { VESTING_MODULE_SUFFIX } from '../../constants';
 import { TokenFactoryGovernableConfig } from '../../config';
-import { bytesToNumber, numberToBytes } from '@swaptoshi/utils/dist/bytes';
 
 export class VestingUnlock extends BaseInstance<VestingUnlockStoreData, VestingUnlockStore> implements VestingUnlockStoreData {
 	public constructor(
@@ -23,13 +22,13 @@ export class VestingUnlock extends BaseInstance<VestingUnlockStoreData, VestingU
 		vestingUnlock: VestingUnlockStoreData,
 		height: number,
 	) {
-		super(VestingUnlockStore, stores, events, config, genesisConfig, moduleName, numberToBytes(height));
+		super(VestingUnlockStore, stores, events, config, genesisConfig, moduleName, bytes.numberToBytes(height));
 		Object.assign(this, utils.objects.cloneDeep(vestingUnlock));
 	}
 
 	public toJSON() {
 		return utils.objects.cloneDeep(
-			serializer<VestingUnlockStoreData>({
+			object.serializer<VestingUnlockStoreData>({
 				toBeUnlocked: this.toBeUnlocked,
 			}),
 		) as Types.JSONObject<VestingUnlockStoreData>;
@@ -53,7 +52,7 @@ export class VestingUnlock extends BaseInstance<VestingUnlockStoreData, VestingU
 					this.mutableContext!.context,
 					{
 						amount: toBeUnlocked.amount,
-						height: bytesToNumber(this.key),
+						height: bytes.bytesToNumber(this.key),
 						recipientAddress: toBeUnlocked.address,
 						tokenId: toBeUnlocked.tokenId,
 					},

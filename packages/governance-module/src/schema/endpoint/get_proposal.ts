@@ -1,8 +1,8 @@
 import { Types } from 'klayr-framework';
 import { GetProposalParams, ProposalStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types as sTypes } from '@swaptoshi/utils';
 
-export const getProposalEndpointResponseSchema: TypedSchema<Types.JSONObject<ProposalStoreData>> = {
+export const getProposalEndpointResponseSchema: sTypes.TypedSchema<Types.JSONObject<ProposalStoreData>> = {
 	$id: '/governance/endpoint/response/getProposal',
 	type: 'object',
 	required: ['title', 'summary', 'deposited', 'author', 'turnout', 'parameters', 'voteSummary', 'status', 'actions', 'attributes'],
@@ -168,7 +168,7 @@ export const getProposalEndpointResponseSchema: TypedSchema<Types.JSONObject<Pro
 	},
 };
 
-export const getProposalEndpointRequestSchema: TypedSchema<GetProposalParams> = {
+export const getProposalEndpointRequestSchema: sTypes.TypedSchema<GetProposalParams> = {
 	$id: '/governance/endpoint/request/getProposal',
 	type: 'object',
 	required: ['proposalId'],

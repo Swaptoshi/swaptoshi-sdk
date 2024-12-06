@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { Modules } from 'klayr-framework';
-import db from '@liskhq/lisk-db';
-import utils from '@klayr/utils';
+import * as db from '@liskhq/lisk-db';
+import * as utils from '@klayr/utils';
 import { PositionInfo } from '../types';
 import { positionInfoStoreSchema } from '../schema';
 

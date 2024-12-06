@@ -1,7 +1,7 @@
 import { NextAvailableProposalIdStoreData } from '../../types';
-import { TypedSchema } from '@swaptoshi/utils/dist/types';
+import { Types } from '@swaptoshi/utils';
 
-export const nextAvailableProposalIdStoreSchema: TypedSchema<NextAvailableProposalIdStoreData> = {
+export const nextAvailableProposalIdStoreSchema: Types.TypedSchema<NextAvailableProposalIdStoreData> = {
 	$id: '/governance/store/next_available_proposal_id',
 	type: 'object',
 	required: ['nextProposalId'],
