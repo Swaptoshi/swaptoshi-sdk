@@ -76,6 +76,17 @@ import { TickBitmapStore } from './stores/tick_bitmap';
 import { TickInfoStore } from './stores/tick_info';
 import { TokenSymbolStore } from './stores/token_symbol';
 import { DexGenesisStore, DexModuleDependencies, FeeMethod, TokenMethod } from './types';
+import {
+	MODULE_NAME_DEX,
+	STORE_INDEX_OBSERVATION,
+	STORE_INDEX_POOL,
+	STORE_INDEX_POSITION_INFO,
+	STORE_INDEX_POSITION_MANAGER,
+	STORE_INDEX_SUPPORTED_TOKEN,
+	STORE_INDEX_TICK_BITMAP,
+	STORE_INDEX_TICK_INFO,
+	STORE_INDEX_TOKEN_SYMBOL,
+} from './constants';
 
 export class DexModule extends Modules.Interoperability.BaseInteroperableModule {
 	public _config: DexGovernableConfig = new DexGovernableConfig(this.name, 8);
@@ -108,15 +119,15 @@ export class DexModule extends Modules.Interoperability.BaseInteroperableModule 
 	public constructor() {
 		super();
 		// registeration of stores and events
-		this.stores.register(PoolStore, new PoolStore(this.name, 0, this.stores, this.events));
-		this.stores.register(PositionManagerStore, new PositionManagerStore(this.name, 1, this.stores, this.events));
+		this.stores.register(PoolStore, new PoolStore(this.name, STORE_INDEX_POOL, this.stores, this.events));
+		this.stores.register(PositionManagerStore, new PositionManagerStore(this.name, STORE_INDEX_POSITION_MANAGER, this.stores, this.events));
 
-		this.stores.register(ObservationStore, new ObservationStore(this.name, 2));
-		this.stores.register(PositionInfoStore, new PositionInfoStore(this.name, 3));
-		this.stores.register(TickBitmapStore, new TickBitmapStore(this.name, 4));
-		this.stores.register(TickInfoStore, new TickInfoStore(this.name, 5));
-		this.stores.register(TokenSymbolStore, new TokenSymbolStore(this.name, 6, this.events));
-		this.stores.register(SupportedTokenStore, new SupportedTokenStore(this.name, 7));
+		this.stores.register(ObservationStore, new ObservationStore(this.name, STORE_INDEX_OBSERVATION));
+		this.stores.register(PositionInfoStore, new PositionInfoStore(this.name, STORE_INDEX_POSITION_INFO));
+		this.stores.register(TickBitmapStore, new TickBitmapStore(this.name, STORE_INDEX_TICK_BITMAP));
+		this.stores.register(TickInfoStore, new TickInfoStore(this.name, STORE_INDEX_TICK_INFO));
+		this.stores.register(TokenSymbolStore, new TokenSymbolStore(this.name, STORE_INDEX_TOKEN_SYMBOL, this.events));
+		this.stores.register(SupportedTokenStore, new SupportedTokenStore(this.name, STORE_INDEX_SUPPORTED_TOKEN));
 		this.stores.register(DexGovernableConfig, this._config); // index number is 8
 
 		this.events.register(BurnEvent, new BurnEvent(this.name));
@@ -135,6 +146,10 @@ export class DexModule extends Modules.Interoperability.BaseInteroperableModule 
 		this.events.register(TokenURIDestroyedEvent, new TokenURIDestroyedEvent(this.name));
 		this.events.register(TreasurifyEvent, new TreasurifyEvent(this.name));
 		this.events.register(TokenRegisteredEvent, new TokenRegisteredEvent(this.name));
+	}
+
+	get name(): string {
+		return MODULE_NAME_DEX;
 	}
 
 	public addDependencies(dependencies: DexModuleDependencies) {

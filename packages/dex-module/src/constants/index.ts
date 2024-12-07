@@ -5,3 +5,4 @@ export * from './attribute';
 export * from './config';
 export * from './verify';
 export * from './chain';
+export * from './module';
