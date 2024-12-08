@@ -73,9 +73,18 @@ import { FeeMethod, NFTMethod, TokenFactoryGenesisStore, TokenFactoryModuleDepen
 import { TokenFactoryGovernableConfig } from './config';
 import { GovernanceMethod } from '@swaptoshi/governance-module';
 import { bytes } from '@swaptoshi/utils';
+import {
+	MODULE_NAME_TOKEN_FACTORY,
+	STORE_INDEX_AIRDROP,
+	STORE_INDEX_FACTORY,
+	STORE_INDEX_ICO,
+	STORE_INDEX_MODULE_CONFIG,
+	STORE_INDEX_NEXT_AVAILABLE_TOKEN_ID,
+	STORE_INDEX_VESTING_UNLOCK,
+} from './constants';
 
 export class TokenFactoryModule extends Modules.Interoperability.BaseInteroperableModule {
-	public _config: TokenFactoryGovernableConfig = new TokenFactoryGovernableConfig(this.name, 5);
+	public _config: TokenFactoryGovernableConfig = new TokenFactoryGovernableConfig(this.name, STORE_INDEX_MODULE_CONFIG);
 	public _feeMethod: FeeMethod | undefined;
 	public _feeConversionMethod: FeeConversionMethod | undefined;
 	public _tokenMethod: TokenMethod | undefined;
@@ -112,11 +121,11 @@ export class TokenFactoryModule extends Modules.Interoperability.BaseInteroperab
 	public constructor() {
 		super();
 		// registeration of stores and events
-		this.stores.register(AirdropStore, new AirdropStore(this.name, 0, this.stores, this.events));
-		this.stores.register(FactoryStore, new FactoryStore(this.name, 1, this.stores, this.events));
-		this.stores.register(ICOStore, new ICOStore(this.name, 2, this.stores, this.events));
-		this.stores.register(NextAvailableTokenIdStore, new NextAvailableTokenIdStore(this.name, 3));
-		this.stores.register(VestingUnlockStore, new VestingUnlockStore(this.name, 4, this.stores, this.events));
+		this.stores.register(AirdropStore, new AirdropStore(this.name, STORE_INDEX_AIRDROP, this.stores, this.events));
+		this.stores.register(FactoryStore, new FactoryStore(this.name, STORE_INDEX_FACTORY, this.stores, this.events));
+		this.stores.register(ICOStore, new ICOStore(this.name, STORE_INDEX_ICO, this.stores, this.events));
+		this.stores.register(NextAvailableTokenIdStore, new NextAvailableTokenIdStore(this.name, STORE_INDEX_NEXT_AVAILABLE_TOKEN_ID));
+		this.stores.register(VestingUnlockStore, new VestingUnlockStore(this.name, STORE_INDEX_VESTING_UNLOCK, this.stores, this.events));
 		this.stores.register(TokenFactoryGovernableConfig, this._config); // index number 5
 
 		this.events.register(AirdropCreatedEvent, new AirdropCreatedEvent(this.name));
@@ -133,6 +142,10 @@ export class TokenFactoryModule extends Modules.Interoperability.BaseInteroperab
 		this.events.register(IcoWithdrawEvent, new IcoWithdrawEvent(this.name));
 		this.events.register(VestedTokenLockedEvent, new VestedTokenLockedEvent(this.name));
 		this.events.register(VestedTokenUnlockedEvent, new VestedTokenUnlockedEvent(this.name));
+	}
+
+	get name(): string {
+		return MODULE_NAME_TOKEN_FACTORY;
 	}
 
 	public addDependencies(dependencies: TokenFactoryModuleDependencies) {
