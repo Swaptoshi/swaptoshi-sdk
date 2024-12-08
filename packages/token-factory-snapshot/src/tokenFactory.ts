@@ -26,7 +26,7 @@ import {
 	VestingUnlockStoreData,
 } from './types';
 
-export const getAirdropSubstore = async (db: StateDB): Promise<AirdropGenesisSubstoreEntry[]> => {
+const getAirdropSubstore = async (db: StateDB): Promise<AirdropGenesisSubstoreEntry[]> => {
 	const airdropStore = new StateStore(db, DB_PREFIX_TOKEN_FACTORY_AIRDROP_STORE);
 	const airdrops = (await airdropStore.iterateWithSchema(
 		{
@@ -61,7 +61,7 @@ export const getAirdropSubstore = async (db: StateDB): Promise<AirdropGenesisSub
 		}));
 };
 
-export const getFactorySubstore = async (db: StateDB): Promise<FactoryGenesisSubstoreEntry[]> => {
+const getFactorySubstore = async (db: StateDB): Promise<FactoryGenesisSubstoreEntry[]> => {
 	const factoryStore = new StateStore(db, DB_PREFIX_TOKEN_FACTORY_FACTORY_STORE);
 	const factories = (await factoryStore.iterateWithSchema(
 		{
@@ -83,7 +83,7 @@ export const getFactorySubstore = async (db: StateDB): Promise<FactoryGenesisSub
 		}));
 };
 
-export const getICOSubstore = async (db: StateDB): Promise<ICOGenesisSubstoreEntry[]> => {
+const getICOSubstore = async (db: StateDB): Promise<ICOGenesisSubstoreEntry[]> => {
 	const icoStore = new StateStore(db, DB_PREFIX_TOKEN_FACTORY_ICO_STORE);
 	const icos = (await icoStore.iterateWithSchema(
 		{
@@ -102,7 +102,7 @@ export const getICOSubstore = async (db: StateDB): Promise<ICOGenesisSubstoreEnt
 		}));
 };
 
-export const getNextAvailableTokenIdSubstore = async (db: StateDB): Promise<NextAvailableTokenIdGenesisSubstoreEntry> => {
+const getNextAvailableTokenIdSubstore = async (db: StateDB): Promise<NextAvailableTokenIdGenesisSubstoreEntry> => {
 	const nextAvailableTokenIdStore = new StateStore(db, DB_PREFIX_TOKEN_FACTORY_ICO_STORE);
 
 	let nextAvailableTokenId;
@@ -119,7 +119,7 @@ export const getNextAvailableTokenIdSubstore = async (db: StateDB): Promise<Next
 	};
 };
 
-export const getVestingUnlockSubstore = async (db: StateDB): Promise<VestingUnlockGenesisSubstoreEntry[]> => {
+const getVestingUnlockSubstore = async (db: StateDB): Promise<VestingUnlockGenesisSubstoreEntry[]> => {
 	const vestingUnlockStore = new StateStore(db, DB_PREFIX_TOKEN_FACTORY_VESTING_UNLOCK_STORE);
 	const vestingUnlocks = (await vestingUnlockStore.iterateWithSchema(
 		{
@@ -141,7 +141,7 @@ export const getVestingUnlockSubstore = async (db: StateDB): Promise<VestingUnlo
 		}));
 };
 
-export const getTokenFactoryModuleEntry = (
+const getTokenFactoryModuleEntry = (
 	airdropSubstore: AirdropGenesisSubstoreEntry[],
 	factorySubstore: FactoryGenesisSubstoreEntry[],
 	icoSubstore: ICOGenesisSubstoreEntry[],

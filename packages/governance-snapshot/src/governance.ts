@@ -65,7 +65,7 @@ const getGovernableConfigSubstoreItem = async (db: StateDB, moduleName: string, 
 	}
 };
 
-export const getConfigSubstore = async (db: StateDB, registries: ConfigRegistryStoreData['registry']): Promise<GovernableConfigSubstoreEntry[]> => {
+const getConfigSubstore = async (db: StateDB, registries: ConfigRegistryStoreData['registry']): Promise<GovernableConfigSubstoreEntry[]> => {
 	const configSubstore: GovernableConfigSubstoreEntry[] = [];
 	for (const registry of registries) {
 		const item = await getGovernableConfigSubstoreItem(db, registry.module, registry.index);
@@ -82,7 +82,7 @@ export const getConfigSubstore = async (db: StateDB, registries: ConfigRegistryS
 	return configSubstore;
 };
 
-export const getBoostedAccountSubstore = async (db: StateDB): Promise<BoostedAccountGenesisSubstoreEntry[]> => {
+const getBoostedAccountSubstore = async (db: StateDB): Promise<BoostedAccountGenesisSubstoreEntry[]> => {
 	const boostedAccountStore = new StateStore(db, DB_PREFIX_GOVERNANCE_BOOSTED_ACCOUNT_STORE);
 	const boostedAccounts = (await boostedAccountStore.iterateWithSchema(
 		{
@@ -100,7 +100,7 @@ export const getBoostedAccountSubstore = async (db: StateDB): Promise<BoostedAcc
 		}));
 };
 
-export const getCastedVoteSubstore = async (db: StateDB): Promise<CastedVoteGenesisSubstoreEntry[]> => {
+const getCastedVoteSubstore = async (db: StateDB): Promise<CastedVoteGenesisSubstoreEntry[]> => {
 	const castedVoteStore = new StateStore(db, DB_PREFIX_GOVERNANCE_CASTED_VOTE_STORE);
 	const castedVotes = (await castedVoteStore.iterateWithSchema(
 		{
@@ -118,7 +118,7 @@ export const getCastedVoteSubstore = async (db: StateDB): Promise<CastedVoteGene
 		}));
 };
 
-export const getDelegatedVoteSubstore = async (db: StateDB): Promise<DelegatedVoteGenesisSubstoreEntry[]> => {
+const getDelegatedVoteSubstore = async (db: StateDB): Promise<DelegatedVoteGenesisSubstoreEntry[]> => {
 	const delegatedVoteStore = new StateStore(db, DB_PREFIX_GOVERNANCE_DELEGATED_VOTE_STORE);
 	const delegatedVotes = (await delegatedVoteStore.iterateWithSchema(
 		{
@@ -137,7 +137,7 @@ export const getDelegatedVoteSubstore = async (db: StateDB): Promise<DelegatedVo
 		}));
 };
 
-export const getNextAvailableProposalIdSubstore = async (db: StateDB): Promise<NextAvailableProposalIdStoreData> => {
+const getNextAvailableProposalIdSubstore = async (db: StateDB): Promise<NextAvailableProposalIdStoreData> => {
 	const nextAvailableProposalIdStore = new StateStore(db, DB_PREFIX_GOVERNANCE_NEXT_AVAILABLE_PROPOSAL_ID_STORE);
 
 	let nextAvailableProposalId;
@@ -154,7 +154,7 @@ export const getNextAvailableProposalIdSubstore = async (db: StateDB): Promise<N
 	};
 };
 
-export const getProposalVoterSubstore = async (db: StateDB): Promise<ProposalVoterGenesisSubstoreEntry[]> => {
+const getProposalVoterSubstore = async (db: StateDB): Promise<ProposalVoterGenesisSubstoreEntry[]> => {
 	const proposalVoterStore = new StateStore(db, DB_PREFIX_GOVERNANCE_PROPOSAL_VOTER_STORE);
 	const proposalVoters = (await proposalVoterStore.iterateWithSchema(
 		{
@@ -172,7 +172,7 @@ export const getProposalVoterSubstore = async (db: StateDB): Promise<ProposalVot
 		}));
 };
 
-export const getProposalSubstore = async (db: StateDB): Promise<ProposalGenesisSubstoreEntry[]> => {
+const getProposalSubstore = async (db: StateDB): Promise<ProposalGenesisSubstoreEntry[]> => {
 	const proposalStore = new StateStore(db, DB_PREFIX_GOVERNANCE_PROPOSAL_STORE);
 	const proposals = (await proposalStore.iterateWithSchema(
 		{
@@ -210,7 +210,7 @@ export const getProposalSubstore = async (db: StateDB): Promise<ProposalGenesisS
 		}));
 };
 
-export const getProposalQueueSubstore = async (db: StateDB): Promise<ProposalQueueGenesisSubstoreEntry[]> => {
+const getProposalQueueSubstore = async (db: StateDB): Promise<ProposalQueueGenesisSubstoreEntry[]> => {
 	const proposalQueueStore = new StateStore(db, DB_PREFIX_GOVERNANCE_QUEUE_STORE);
 	const proposalQueues = (await proposalQueueStore.iterateWithSchema(
 		{
@@ -228,7 +228,7 @@ export const getProposalQueueSubstore = async (db: StateDB): Promise<ProposalQue
 		}));
 };
 
-export const getVoteScoreSubstore = async (db: StateDB): Promise<VoteScoreGenesisSubstoreEntry[]> => {
+const getVoteScoreSubstore = async (db: StateDB): Promise<VoteScoreGenesisSubstoreEntry[]> => {
 	const voteScoreStore = new StateStore(db, DB_PREFIX_GOVERNANCE_VOTE_SCORE_STORE);
 	const voteScores = (await voteScoreStore.iterateWithSchema(
 		{
@@ -246,7 +246,7 @@ export const getVoteScoreSubstore = async (db: StateDB): Promise<VoteScoreGenesi
 		}));
 };
 
-export const getConfigRegistrySubstore = async (db: StateDB, additionalConfig?: AdditionalConfigRegistry[]): Promise<ConfigRegistryStoreData> => {
+const getConfigRegistrySubstore = async (db: StateDB, additionalConfig?: AdditionalConfigRegistry[]): Promise<ConfigRegistryStoreData> => {
 	const configRegistryStore = new StateStore(db, DB_PREFIX_GOVERNANCE_CONFIG_REGISTRY);
 
 	let configRegistry;
@@ -274,7 +274,7 @@ export const getConfigRegistrySubstore = async (db: StateDB, additionalConfig?: 
 	return configRegistry;
 };
 
-export const getGovernanceModuleEntry = (
+const getGovernanceModuleEntry = (
 	boostedAccountSubstore: BoostedAccountGenesisSubstoreEntry[],
 	castedVoteSubstore: CastedVoteGenesisSubstoreEntry[],
 	delegatedVoteSubstore: DelegatedVoteGenesisSubstoreEntry[],
