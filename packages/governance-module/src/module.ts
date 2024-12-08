@@ -12,7 +12,20 @@ import { RevokeDelegatedVoteCommand } from './commands/revoke_delegated_vote_com
 import { SetProposalAttributesCommand } from './commands/set_proposal_attributes_command';
 import { VoteCommand } from './commands/vote_command';
 import { GovernanceGovernableConfig } from './config';
-import { defaultConfig } from './constants';
+import {
+	defaultConfig,
+	MODULE_NAME_GOVERNANCE,
+	STORE_INDEX_BOOSTED_ACCOUNT,
+	STORE_INDEX_CASTED_VOTE,
+	STORE_INDEX_CONFIG_REGISTRY,
+	STORE_INDEX_DELEGTAED_VOTE,
+	STORE_INDEX_MODULE_CONFIG,
+	STORE_INDEX_NEXT_AVAILABLE_PROPOSAL_ID,
+	STORE_INDEX_PROPOSAL,
+	STORE_INDEX_PROPOSAL_QUEUE,
+	STORE_INDEX_PROPOSAL_VOTER,
+	STORE_INDEX_VOTE_SCORE,
+} from './constants';
 import { GovernanceEndpoint } from './endpoint';
 import { ConfigUpdatedEvent } from './events/config_updated';
 import { DelegatedVoteRevokedEvent } from './events/delegated_vote_revoked';
@@ -68,7 +81,7 @@ import { ConfigRegisteredEvent } from './events/config_registered';
 import { ConfigRegistryStore } from './stores/config_registry';
 
 export class GovernanceModule extends Modules.BaseModule {
-	public _config = new GovernanceGovernableConfig(this.name, 0);
+	public _config = new GovernanceGovernableConfig(this.name, STORE_INDEX_MODULE_CONFIG);
 	public _feeMethod: FeeMethod | undefined;
 
 	public endpoint = new GovernanceEndpoint(this.stores, this.offchainStores);
@@ -88,15 +101,15 @@ export class GovernanceModule extends Modules.BaseModule {
 	public constructor() {
 		super();
 		this.stores.register(GovernanceGovernableConfig, this._config); // index is 0
-		this.stores.register(ProposalStore, new ProposalStore(this.name, 1, this.stores, this.events));
-		this.stores.register(ProposalQueueStore, new ProposalQueueStore(this.name, 2, this.stores, this.events));
-		this.stores.register(BoostedAccountStore, new BoostedAccountStore(this.name, 3, this.stores, this.events));
-		this.stores.register(DelegatedVoteStore, new DelegatedVoteStore(this.name, 4, this.stores, this.events));
-		this.stores.register(NextAvailableProposalIdStore, new NextAvailableProposalIdStore(this.name, 5));
-		this.stores.register(CastedVoteStore, new CastedVoteStore(this.name, 6));
-		this.stores.register(VoteScoreStore, new VoteScoreStore(this.name, 7));
-		this.stores.register(ProposalVoterStore, new ProposalVoterStore(this.name, 8));
-		this.stores.register(ConfigRegistryStore, new ConfigRegistryStore(this.name, 9));
+		this.stores.register(ProposalStore, new ProposalStore(this.name, STORE_INDEX_PROPOSAL, this.stores, this.events));
+		this.stores.register(ProposalQueueStore, new ProposalQueueStore(this.name, STORE_INDEX_PROPOSAL_QUEUE, this.stores, this.events));
+		this.stores.register(BoostedAccountStore, new BoostedAccountStore(this.name, STORE_INDEX_BOOSTED_ACCOUNT, this.stores, this.events));
+		this.stores.register(DelegatedVoteStore, new DelegatedVoteStore(this.name, STORE_INDEX_DELEGTAED_VOTE, this.stores, this.events));
+		this.stores.register(NextAvailableProposalIdStore, new NextAvailableProposalIdStore(this.name, STORE_INDEX_NEXT_AVAILABLE_PROPOSAL_ID));
+		this.stores.register(CastedVoteStore, new CastedVoteStore(this.name, STORE_INDEX_CASTED_VOTE));
+		this.stores.register(VoteScoreStore, new VoteScoreStore(this.name, STORE_INDEX_VOTE_SCORE));
+		this.stores.register(ProposalVoterStore, new ProposalVoterStore(this.name, STORE_INDEX_PROPOSAL_VOTER));
+		this.stores.register(ConfigRegistryStore, new ConfigRegistryStore(this.name, STORE_INDEX_CONFIG_REGISTRY));
 
 		this.events.register(ConfigUpdatedEvent, new ConfigUpdatedEvent(this.name));
 		this.events.register(DelegatedVoteRevokedEvent, new DelegatedVoteRevokedEvent(this.name));
@@ -116,6 +129,10 @@ export class GovernanceModule extends Modules.BaseModule {
 
 		this.method.init(this._governableConfig);
 		this.endpoint.init(this._governableConfig);
+	}
+
+	get name(): string {
+		return MODULE_NAME_GOVERNANCE;
 	}
 
 	public metadata(): Modules.ModuleMetadata {

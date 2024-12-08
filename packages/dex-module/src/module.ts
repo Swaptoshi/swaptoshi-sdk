@@ -78,6 +78,7 @@ import { TokenSymbolStore } from './stores/token_symbol';
 import { DexGenesisStore, DexModuleDependencies, FeeMethod, TokenMethod } from './types';
 import {
 	MODULE_NAME_DEX,
+	STORE_INDEX_MODULE_CONFIG,
 	STORE_INDEX_OBSERVATION,
 	STORE_INDEX_POOL,
 	STORE_INDEX_POSITION_INFO,
@@ -89,7 +90,7 @@ import {
 } from './constants';
 
 export class DexModule extends Modules.Interoperability.BaseInteroperableModule {
-	public _config: DexGovernableConfig = new DexGovernableConfig(this.name, 8);
+	public _config: DexGovernableConfig = new DexGovernableConfig(this.name, STORE_INDEX_MODULE_CONFIG);
 	public _feeMethod: FeeMethod | undefined;
 	public _feeConversionMethod: FeeConversionMethod | undefined;
 	public _tokenMethod: TokenMethod | undefined;

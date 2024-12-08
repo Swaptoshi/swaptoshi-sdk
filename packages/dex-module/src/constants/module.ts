@@ -7,3 +7,4 @@ export const STORE_INDEX_TICK_BITMAP = 4;
 export const STORE_INDEX_TICK_INFO = 5;
 export const STORE_INDEX_TOKEN_SYMBOL = 6;
 export const STORE_INDEX_SUPPORTED_TOKEN = 7;
+export const STORE_INDEX_MODULE_CONFIG = 8;
