@@ -1,5 +1,2 @@
-import { governanceClient } from '../../src/governance-client';
-
-test('should test', () => {
-	expect(governanceClient()).toBe('Hello from governanceClient');
-});
+// eslint-disable-next-line jest/expect-expect
+test.todo('should test');

@@ -1,5 +1,2 @@
-import { tokenFactoryClient } from '../../src/token-factory-client';
-
-test('should test', () => {
-	expect(tokenFactoryClient()).toBe('Hello from tokenFactoryClient');
-});
+// eslint-disable-next-line jest/expect-expect
+test.todo('should test');

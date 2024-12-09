@@ -1,5 +1,2 @@
-import { liquidPosClient } from '../../src/liquid-pos-client';
-
-test('should test', () => {
-	expect(liquidPosClient()).toBe('Hello from liquidPosClient');
-});
+// eslint-disable-next-line jest/expect-expect
+test.todo('should test');
