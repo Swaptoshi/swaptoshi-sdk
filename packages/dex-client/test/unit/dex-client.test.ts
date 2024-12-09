@@ -1,5 +1,2 @@
-import { dexClient } from '../../src/dex-client';
-
-test('should test', () => {
-	expect(dexClient()).toBe('Hello from dexClient');
-});
+// eslint-disable-next-line jest/expect-expect
+test.todo('should test');

@@ -106,7 +106,7 @@ export class DexEndpoint extends Modules.BaseEndpoint {
 		const positionManagerStore = this.stores.get(PositionManagerStore);
 		const positionManager = await positionManagerStore.get(context, Buffer.from(param.collectionId, 'hex'));
 
-		return { poolAddress: positionManager.poolAddress.toString('hex') };
+		return { poolAddress: cryptography.address.getKlayr32AddressFromAddress(positionManager.poolAddress) };
 	}
 
 	public async getPool(context: Types.ModuleEndpointContext) {
