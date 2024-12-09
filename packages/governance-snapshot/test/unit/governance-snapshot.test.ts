@@ -1,5 +1,7 @@
-import { governanceSnapshot } from '../../src/governance-snapshot';
+// import * as modules from '../../../src/app/modules/feeConversion'
 
-test('should test', () => {
-	expect(governanceSnapshot()).toBe('Hello from governanceSnapshot');
+describe('index', () => {
+	describe('createGovernanceModuleAsset', () => {
+		it.todo('should snapshot successfully');
+	});
 });

@@ -1,5 +1,7 @@
-import { tokenFactorySnapshot } from '../../src/token-factory-snapshot';
+// import * as modules from '../../../src/app/modules/feeConversion'
 
-test('should test', () => {
-	expect(tokenFactorySnapshot()).toBe('Hello from tokenFactorySnapshot');
+describe('index', () => {
+	describe('createTokenFactoryModuleAsset', () => {
+		it.todo('should snapshot successfully');
+	});
 });

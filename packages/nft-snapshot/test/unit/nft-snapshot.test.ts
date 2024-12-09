@@ -1,5 +1,7 @@
-import { nftSnapshot } from '../../src/nft-snapshot';
+// import * as modules from '../../../src/app/modules/feeConversion'
 
-test('should test', () => {
-	expect(nftSnapshot()).toBe('Hello from nftSnapshot');
+describe('index', () => {
+	describe('createNFTModuleAsset', () => {
+		it.todo('should snapshot successfully');
+	});
 });
