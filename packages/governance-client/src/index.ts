@@ -1,11 +1,11 @@
 import { GovernanceClient } from './client';
 
 export function createIPCClient(path: string) {
-	const dexClient = new GovernanceClient(path, 'ipc');
-	return dexClient;
+	const governanceClient = new GovernanceClient(path, 'ipc');
+	return governanceClient;
 }
 
 export function createWSClient(url: string) {
-	const dexClient = new GovernanceClient(url, 'ws');
-	return dexClient;
+	const governanceClient = new GovernanceClient(url, 'ws');
+	return governanceClient;
 }

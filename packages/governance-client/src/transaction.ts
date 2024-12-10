@@ -61,7 +61,7 @@ export class GovernanceTransactionClient {
 			address: cryptography.address.getKlayr32AddressFromPublicKey(senderPublicKey),
 		})) as unknown as { nonce: string };
 
-		const payload = { module: 'dex', command, nonce, params: params.params as unknown as Record<string, unknown> };
+		const payload = { module: 'governance', command, nonce, params: params.params as unknown as Record<string, unknown> };
 
 		let transaction = await client.transaction.create({ ...payload, fee: INITIAL_MOCK_FEE }, senderPrivateKey.toString('hex'));
 
