@@ -1,5 +1,2 @@
-import { swaptoshiSdk } from '../../src/swaptoshi-sdk';
-
-test('should test', () => {
-	expect(swaptoshiSdk()).toBe('Hello from swaptoshiSdk');
-});
+// eslint-disable-next-line jest/expect-expect
+test.todo('should test');

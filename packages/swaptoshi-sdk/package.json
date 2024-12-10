@@ -57,5 +57,22 @@
 		"ts-jest": "^29.1.1",
 		"tslib": "^2.6.2",
 		"typescript": "^5.1.6"
+	},
+	"dependencies": {
+		"@swaptoshi/dex-client": "^1.0.0-alpha.0",
+		"@swaptoshi/dex-module": "^1.0.0-alpha.0",
+		"@swaptoshi/dex-snapshot": "^1.0.0-alpha.0",
+		"@swaptoshi/fee-conversion-client": "^1.0.0-alpha.0",
+		"@swaptoshi/fee-conversion-module": "^1.0.0-alpha.0",
+		"@swaptoshi/governance-client": "^1.0.0-alpha.0",
+		"@swaptoshi/governance-module": "^1.0.0-alpha.0",
+		"@swaptoshi/governance-snapshot": "^1.0.0-alpha.0",
+		"@swaptoshi/liquid-pos-client": "^1.0.0-alpha.0",
+		"@swaptoshi/liquid-pos-module": "^1.0.0-alpha.0",
+		"@swaptoshi/nft-snapshot": "^1.0.0-alpha.0",
+		"@swaptoshi/token-factory-client": "^1.0.0-alpha.0",
+		"@swaptoshi/token-factory-module": "^1.0.0-alpha.0",
+		"@swaptoshi/token-factory-snapshot": "^1.0.0-alpha.0",
+		"@swaptoshi/utils": "^1.0.0-alpha.0"
 	}
 }
