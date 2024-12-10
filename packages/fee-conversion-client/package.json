@@ -16,11 +16,14 @@
 	"types": "./dist/index.d.ts",
 	"exports": "./dist/index.js",
 	"directories": {
-		"lib": "lib",
-		"test": "__tests__"
+		"src": "src",
+		"test": "test"
 	},
 	"files": [
-		"lib"
+		"dist",
+		"LICENSE",
+		"README.md",
+		"package.json"
 	],
 	"repository": {
 		"type": "git",
