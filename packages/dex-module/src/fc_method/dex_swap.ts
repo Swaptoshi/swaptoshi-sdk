@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { StateMachine } from 'klayr-framework';
 import { codec } from '@klayr/codec';
 import { BaseFeeConversionMethod, FeeConversionVerificationResult, FeeConversionVerifyStatus } from '@swaptoshi/fee-conversion-module';

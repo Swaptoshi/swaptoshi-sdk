@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules, Types } from 'klayr-framework';
 import { DexModuleConfig, MutableContext, TokenSymbol } from '../types';

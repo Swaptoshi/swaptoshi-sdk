@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, StateMachine } from 'klayr-framework';
 import { ICOPool } from './stores/instances/ico_pool';
 import { Airdrop } from './stores/instances/airdrop';

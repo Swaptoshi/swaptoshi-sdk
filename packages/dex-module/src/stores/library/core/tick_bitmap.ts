@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { TickBitmapStore } from '../../tick_bitmap';
 import { Int24String, Int16String, Uint8String, Int16, Int24, Uint8, Uint256 } from '../int';
 

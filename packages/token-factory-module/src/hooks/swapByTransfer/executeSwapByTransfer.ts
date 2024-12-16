@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, StateMachine } from 'klayr-framework';
 import { ICOStore } from '../../stores/ico';
 import { mutableTransactionHookFactoryContext } from '../../stores/context';

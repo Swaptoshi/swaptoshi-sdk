@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 export * as BitMath from './bit_math';
 export * as FixedPoint96 from './fixed_point_96';
 export * as FixedPoint128 from './fixed_point_128';

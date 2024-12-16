@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import * as utils from '@klayr/utils';
 import {
 	boostedAccountStoreSchema,

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Modules, StateMachine } from 'klayr-framework';
 import { BaseGovernableConfig, GovernableConfigSetContext, GovernableConfigVerifyContext } from '@swaptoshi/governance-module';

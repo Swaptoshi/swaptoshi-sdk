@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules } from 'klayr-framework';
 import { verifyValidCrossTransfer, executeSwapByCrossTransfer } from './hooks';
 import { MainchainInteroperabilityMethod, NFTMethod, SidechainInteroperabilityMethod, TokenMethod } from './types';

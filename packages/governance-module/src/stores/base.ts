@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, Types } from 'klayr-framework';
 import * as utils from '@klayr/utils';
 import * as db from '@liskhq/lisk-db';

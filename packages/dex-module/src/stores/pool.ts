@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules } from 'klayr-framework';
 import * as cryptography from '@klayr/cryptography';

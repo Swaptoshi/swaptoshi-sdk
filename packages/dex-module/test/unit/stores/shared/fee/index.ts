@@ -1,10 +1,11 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import { ModuleConfig } from 'klayr-framework/dist-node/modules/fee/types';
 import { StateMachine } from 'klayr-framework';
 import { FeeMethod } from '@dist/types';
-import { tokenID } from '../module';
+
+const chainID = Buffer.from('00000001', 'hex');
+const tokenID = Buffer.concat([chainID, Buffer.alloc(4, 0)]);
 
 export const mock_fee_init = jest.fn();
 export const mock_fee_getFeeTokenID = jest.fn();

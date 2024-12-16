@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { CreatePoolParams } from '../../../types';
 import { verify } from '@swaptoshi/utils';
 

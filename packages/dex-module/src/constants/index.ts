@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 export * from './token_symbol';
 export * from './address';
 export * from './attribute';

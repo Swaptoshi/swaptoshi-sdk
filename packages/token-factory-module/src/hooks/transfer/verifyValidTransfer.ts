@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, StateMachine } from 'klayr-framework';
 import { codec } from '@klayr/codec';
 import { nftTransferParamsSchema } from '../../schema';

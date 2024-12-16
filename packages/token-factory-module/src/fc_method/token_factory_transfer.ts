@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { StateMachine } from 'klayr-framework';
 import { BaseFeeConversionMethod, FeeConversionVerificationResult, FeeConversionVerifyStatus } from '@swaptoshi/fee-conversion-module';
 import { isSwapByTransfer } from '../hooks';

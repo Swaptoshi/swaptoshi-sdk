@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { GovernableConfigSchema } from '@swaptoshi/governance-module';
 import { DexModuleConfig } from '../types';
 

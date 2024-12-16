@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, StateMachine } from 'klayr-framework';
 import { isSwapByTransfer } from './isSwapByTransfer';
 import { decodeICOPoolAddress } from '../../stores/library';

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable import/no-cycle */
+
 /* eslint-disable import/no-extraneous-dependencies */
 import { Types, Modules } from 'klayr-framework';
 

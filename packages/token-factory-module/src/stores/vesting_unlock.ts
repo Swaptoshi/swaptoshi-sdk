@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable import/no-cycle */
 
 import { MutableFactoryContext, StoreInstance, VestingUnlockStoreData } from '../types';
 import { vestingUnlockStoreSchema } from '../schema';

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { FeeConversionMethod } from '@swaptoshi/fee-conversion-module';
 import { GovernanceMethod } from '@swaptoshi/governance-module';
 import { SidechainInteroperabilityMethod, MainchainInteroperabilityMethod, FeeMethod, TokenMethod, NFTMethod } from './utils';

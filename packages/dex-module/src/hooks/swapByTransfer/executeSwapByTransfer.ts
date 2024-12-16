@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, StateMachine } from 'klayr-framework';
 import { PoolStore } from '../../stores/pool';
 import { PoolAddress } from '../../stores/library/periphery';

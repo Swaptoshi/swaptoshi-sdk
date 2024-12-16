@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable import/no-cycle */
+
 import { AirdropStoreData, ImmutableFactoryContext, MutableFactoryContext, StoreInstance } from '../types';
 import { airdropStoreSchema } from '../schema';
 import { ADDRESS_LENGTH, TOKEN_ID_LENGTH } from '../constants';

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import { FeeMethod, TokenMethod } from '@dist/types';

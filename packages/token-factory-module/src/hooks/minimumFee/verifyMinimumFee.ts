@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { StateMachine } from 'klayr-framework';
 import { TokenFactoryGovernableConfig } from '../../config';

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, StateMachine } from 'klayr-framework';
 import { mutableBlockHookFactoryContext } from '../../stores/context';
 import { VestingUnlockStore } from '../../stores/vesting_unlock';

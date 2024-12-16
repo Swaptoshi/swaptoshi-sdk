@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, StateMachine } from 'klayr-framework';
 import { PoolAddress } from '../../stores/library/periphery';
 import { isSwapByTransfer } from './isSwapByTransfer';

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Types } from 'klayr-framework';
 import { DexModuleConfig } from '../types';
 import { CHAIN_ID_LENGTH } from '../constants';

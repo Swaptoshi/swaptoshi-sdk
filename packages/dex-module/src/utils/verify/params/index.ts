@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 export * from './burn';
 export * from './collect';
 export * from './collect_treasury';

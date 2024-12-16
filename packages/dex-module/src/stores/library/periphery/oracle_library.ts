@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Observation, Slot0 } from '../../../types';
 import { Uint128String, Uint32String, Int56String, Uint160String, Int24String, Uint32, Int24, Uint128, Int56, Uint160, Uint192, Uint256String, Uint256, Uint16, Int256, Int256String } from '../int';
 

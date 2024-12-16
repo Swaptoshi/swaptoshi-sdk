@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Int24String } from '../int';
 import * as Position from '../core/position';
 

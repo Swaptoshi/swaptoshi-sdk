@@ -1,6 +1,6 @@
-/* eslint-disable import/no-cycle */
-import { chainID } from '../module';
 import { NFT } from './nft';
+
+const chainID = Buffer.from('00000001', 'hex');
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class NFTRegistry {

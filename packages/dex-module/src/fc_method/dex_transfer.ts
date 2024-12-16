@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { StateMachine } from 'klayr-framework';
 import { BaseFeeConversionMethod, FeeConversionVerificationResult, FeeConversionVerifyStatus } from '@swaptoshi/fee-conversion-module';

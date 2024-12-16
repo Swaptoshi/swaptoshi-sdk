@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Uint128String, Int128String, Uint256String, Int56String, Uint160String, Uint32String, Int24String, Int24, Uint24, Uint128, Uint256, Int128, Int256, Uint160, Int56, Uint32 } from '../int';
 import { TickInfoStore } from '../../tick_info';

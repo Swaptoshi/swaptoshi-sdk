@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import Decimal from 'decimal.js';
 import BigNumber from 'bignumber.js';
 import { BigIntAble, Uint, Uint256String } from '../stores/library/int';

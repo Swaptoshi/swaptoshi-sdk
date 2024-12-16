@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable import/no-extraneous-dependencies */
 import { Transaction, testing } from 'klayr-framework';
 import { codec, Schema } from '@klayr/codec';

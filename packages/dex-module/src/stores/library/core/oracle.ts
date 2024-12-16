@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-param-reassign */
 import { ImmutableContext, MutableContext, Observation } from '../../../types';

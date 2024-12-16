@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules } from 'klayr-framework';
 import * as db from '@liskhq/lisk-db';
 import { TickBitmap } from '../types';

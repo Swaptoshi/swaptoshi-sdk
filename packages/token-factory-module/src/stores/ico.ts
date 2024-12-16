@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable import/no-cycle */
+
 import { ICOStoreData, ImmutableFactoryContext, MutableFactoryContext, StoreInstance } from '../types';
 import { icoStoreSchema } from '../schema';
 import { ICOPool } from './instances/ico_pool';

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { StateMachine, Modules, Types } from 'klayr-framework';
 import { ImmutableSwapContext, MutableSwapContext } from '../../types';

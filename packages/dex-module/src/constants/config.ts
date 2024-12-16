@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import * as cryptography from '@klayr/cryptography';
 import { DexModuleConfig } from '../types';
 import { DEFAULT_TREASURY_ADDRESS } from './address';

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { StateMachine } from 'klayr-framework';
 import { TokenFactoryGovernableConfig } from '../../config';
 import { FeeMethod } from '../../types';

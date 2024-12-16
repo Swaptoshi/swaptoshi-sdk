@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules, StateMachine, Transaction } from 'klayr-framework';
 import { codec } from '@klayr/codec';
 import { PoolStore } from '../../stores/pool';

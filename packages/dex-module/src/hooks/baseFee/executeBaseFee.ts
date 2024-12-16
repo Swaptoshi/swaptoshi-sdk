@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { StateMachine } from 'klayr-framework';
 import { DexGovernableConfig } from '../../config';
 import { FeeMethod } from '../../types';

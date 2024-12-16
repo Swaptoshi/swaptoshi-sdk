@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/require-await */
@@ -10,7 +9,8 @@ import { NFTAttributes } from 'klayr-framework/dist-node/modules/nft/stores/nft'
 import { ModuleConfig, FeeMethod, NFT } from 'klayr-framework/dist-node/modules/nft/types';
 import { NFTMethod } from 'klayr-framework/dist-node/modules/nft/method';
 import { NFTRegistry } from './nft_registry';
-import { chainID } from '../module';
+
+const chainID = Buffer.from('00000001', 'hex');
 
 export const mock_nft_init = jest.fn();
 export const mock_nft_addDependencies = jest.fn();

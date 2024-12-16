@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Modules } from 'klayr-framework';
 import { feeConvertedEventSchema } from '../schema';
 

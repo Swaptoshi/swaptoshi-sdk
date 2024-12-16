@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 export * from './commands';
 export * from './dependencies';
 export * from './endpoint';

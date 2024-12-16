@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable import/no-cycle */
+
 import { FactoryStoreData, ImmutableFactoryContext, MutableFactoryContext, StoreInstance } from '../types';
 import { factoryStoreSchema } from '../schema';
 import { TOKEN_ID_LENGTH } from '../constants';

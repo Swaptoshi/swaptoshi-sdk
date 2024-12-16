@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Types, Modules } from 'klayr-framework';
 import { DEXPoolData, DexModuleConfig, PositionManager, ImmutableSwapContext, MutableSwapContext, TokenMethod, NFTMethod } from '../../types';
 import { DEXPool } from './pool';

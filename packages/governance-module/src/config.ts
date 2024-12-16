@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Types, StateMachine } from 'klayr-framework';
 import * as cryptography from '@klayr/cryptography';

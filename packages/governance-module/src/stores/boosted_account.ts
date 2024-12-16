@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { boostedAccountStoreSchema } from '../schema';
 import { ImmutableGovernanceContext, MutableGovernanceContext, BoostedAccountStoreData, StoreInstance } from '../types';

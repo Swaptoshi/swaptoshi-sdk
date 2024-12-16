@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { CollectParams } from '../../../types';
 import { verify } from '@swaptoshi/utils';
 

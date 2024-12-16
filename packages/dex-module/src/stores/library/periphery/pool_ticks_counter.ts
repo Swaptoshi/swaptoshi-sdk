@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { TickBitmapStore } from '../../tick_bitmap';
 import { Int24String, Uint32, Int16, Uint8, Int24, Uint256, Uint256String, Uint16String, Uint16 } from '../int';

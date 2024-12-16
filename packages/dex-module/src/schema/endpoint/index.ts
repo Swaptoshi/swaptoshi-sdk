@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 export * from './get_config';
 export * from './get_metadata';
 export * from './get_pool';

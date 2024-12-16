@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { proposalStoreSchema } from '../schema';
 import { CreateProposalParams, ImmutableGovernanceContext, MutableGovernanceContext, ProposalStatus, ProposalStoreData, QuorumMode, StoreInstance } from '../types';

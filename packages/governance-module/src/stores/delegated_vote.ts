@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { delegatedVoteStoreSchema } from '../schema';
 import { ImmutableGovernanceContext, MutableGovernanceContext, StoreInstance, DelegatedVoteStoreData } from '../types';

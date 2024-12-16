@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Modules, StateMachine } from 'klayr-framework';
 import { MutableContext, SupportedTokenManager, TokenMethod } from '../types';

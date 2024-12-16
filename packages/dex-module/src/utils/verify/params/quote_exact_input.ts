@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { QuoteExactInputParams } from '../../../types';
 import { verify } from '@swaptoshi/utils';
 

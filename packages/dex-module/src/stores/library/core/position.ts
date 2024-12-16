@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 import * as cryptography from '@klayr/cryptography';
 import { Uint256String, Int24String, Int128String, Uint128, Int128, Uint256 } from '../int';
